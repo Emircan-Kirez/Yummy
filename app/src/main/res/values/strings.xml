@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Yummy</string>
+
+    <!-- Bottom Navigation View -->
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="userRecipe">User Recipe</string>
+    <string name="favorite">Favorite</string>
+
 </resources>

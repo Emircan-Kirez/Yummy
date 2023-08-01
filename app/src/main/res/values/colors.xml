@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Bottom Navigation View -->
+    <color name="bottom_nav_bg_color">@color/design_default_color_primary_dark</color>
+    <color name="bottom_nav_item_color">@color/white</color>
 </resources>

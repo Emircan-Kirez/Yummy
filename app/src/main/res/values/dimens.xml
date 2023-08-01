@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dp -->
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
+
+    <!-- Bottom Navigation View -->
+    <dimen name="bottom_nav_icon_size">@dimen/dp_28</dimen>
+
+</resources>
