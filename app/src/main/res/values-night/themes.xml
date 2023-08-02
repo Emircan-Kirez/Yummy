@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Yummy" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:statusBarColor">?android:colorPrimary</item>
+        <item name="android:colorPrimary">@color/primaryColor</item>
     </style>
+
+    <style name="Theme.Yummy" parent="Base.Theme.Yummy" />
+
+    <style name="CustomBottomNavigationView" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
 </resources>

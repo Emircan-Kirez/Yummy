@@ -11,11 +11,12 @@
 
     <!-- sp -->
     <dimen name="sp_32">32sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
     <dimen name="sp_16">16sp</dimen>
 
     <!-- Text Sizes -->
     <dimen name="header">@dimen/sp_32</dimen>
-    <dimen name="button_text_size">@dimen/sp_16</dimen>
+    <dimen name="button_text_size">@dimen/sp_20</dimen>
 
 
     <!-- Card View Defaults -->

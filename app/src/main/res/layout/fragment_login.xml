@@ -35,54 +35,88 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/welcome"
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/header"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/h_guideline_0.2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_32"
-        app:boxStrokeWidth="@dimen/dp_0"
-        app:boxStrokeWidthFocused="@dimen/dp_0"
-        android:background="@drawable/input_text_bg"
+        app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
         app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
         app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
         app:layout_constraintTop_toTopOf="@+id/h_guideline_0.2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        app:boxCornerRadiusBottomEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
+        app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
+        app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
+        app:layout_constraintTop_toBottomOf="@+id/til_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_forgot_password"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
+        app:layout_constraintTop_toBottomOf="@id/til_password" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="@dimen/dp_0"
-        android:background="@drawable/default_button_bg"
-        app:layout_constraintCircleRadius="@dimen/sp_32"
-        app:layout_constraintBottom_toTopOf="@id/h_guideline_0.7"
-        app:layout_constraintStart_toStartOf="@id/v_guideline_0.1"
-        app:layout_constraintEnd_toStartOf="@id/v_guideline_0.9"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryColor"
         android:text="@string/login"
-        android:textStyle="bold"
         android:textSize="@dimen/button_text_size"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/cornerRadius"
+        app:layout_constraintBottom_toTopOf="@id/h_guideline_0.7"
+        app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
+        app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
 
     <TextView
-        android:id="@+id/dont_you_have_account"
+        android:id="@+id/tv_dont_you_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
         android:layout_marginBottom="@dimen/dp_32"
         android:text="@string/dont_you_have_account"
         app:layout_constraintBottom_toBottomOf="parent"

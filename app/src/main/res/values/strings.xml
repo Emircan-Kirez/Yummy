@@ -9,10 +9,20 @@
     <string name="favorite">Favorite</string>
 
     <!-- Login Fragment -->
-    <string name="login">Giriş Yap</string>
+    <string name="welcome">Hoş Geldin</string>
+    <string name="login">Giriş yap</string>
     <string name="dont_you_have_account"><font color="#A7B0C0">Hesabın yok mu?</font> <font color="#1564BF"><b>Kayıt ol</b></font></string>
     <string name="email">Email</string>
     <string name="password">Şifre</string>
     <string name="forgot_password">Şifreni mi unuttun?</string>
+
+    <!-- Register Fragment -->
+    <string name="create_account">Hesap Oluştur</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="have_already_account">Hesabım var</string>
+
+    <!-- Forgot Password -->
+    <string name="reset_password_message">Şifreni mi unuttun?</string>
+    <string name="reset">Sıfırla</string>
 
 </resources>
