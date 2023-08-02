@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">Yummy</string>
+    <string name="hello_blank_fragment">Ben boşum</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>
     <string name="search">Search</string>
-    <string name="userRecipe">User Recipe</string>
+    <string name="user_recipe">User Recipe</string>
     <string name="favorite">Favorite</string>
+
+    <!-- Login Fragment -->
+    <string name="login">Giriş Yap</string>
+    <string name="dont_you_have_account"><font color="#A7B0C0">Hesabın yok mu?</font> <font color="#1564BF"><b>Kayıt ol</b></font></string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="forgot_password">Şifreni mi unuttun?</string>
 
 </resources>

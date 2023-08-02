@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Yummy" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/bottom_nav_bg_color</item>
+        <item name="android:statusBarColor">?android:colorPrimary</item>
+        <item name="android:colorPrimary">@color/primaryColor</item>
     </style>
 
     <style name="Theme.Yummy" parent="Base.Theme.Yummy" />

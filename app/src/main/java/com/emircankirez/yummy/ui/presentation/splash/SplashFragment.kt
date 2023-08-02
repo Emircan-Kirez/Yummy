@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
 
         Handler().postDelayed({
             // eğer kullanıcı kayıt olmuşsa home ekranına yoksa login ekranına
-            navController.navigate(R.id.action_splashFragment_to_homeFragment)
+            navController.navigate(R.id.action_splashFragment_to_loginFragment)
         }, 2000)
     }
 
