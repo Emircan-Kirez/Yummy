@@ -63,6 +63,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email" />
@@ -77,12 +78,14 @@
         app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
         app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
         app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
         app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password" />

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.R
+import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.databinding.FragmentSplashBinding
 
 
@@ -30,7 +31,10 @@ class SplashFragment : Fragment() {
 
         Handler().postDelayed({
             // eğer kullanıcı kayıt olmuşsa home ekranına yoksa login ekranına
-            navController.navigate(R.id.action_splashFragment_to_loginFragment)
+            if(MyPreferences.getInstance(requireContext()).isLogin)
+                navController.navigate(R.id.action_splashFragment_to_homeFragment)
+            else
+                navController.navigate(R.id.action_splashFragment_to_loginFragment)
         }, 2000)
     }
 

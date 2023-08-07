@@ -14,7 +14,9 @@ import com.emircankirez.yummy.common.extensions.hide
 import com.emircankirez.yummy.common.extensions.show
 import com.emircankirez.yummy.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val bottomNavigationView: BottomNavigationView by lazy { findViewById(R.id.bottomNavigationView) }

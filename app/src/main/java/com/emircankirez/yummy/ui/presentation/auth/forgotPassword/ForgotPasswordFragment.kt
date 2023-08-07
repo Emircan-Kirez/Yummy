@@ -5,15 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.R
+import com.emircankirez.yummy.common.Resource
+import com.emircankirez.yummy.common.extensions.isValidEmail
 import com.emircankirez.yummy.databinding.FragmentForgotPasswordBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ForgotPasswordFragment : Fragment() {
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private val navController: NavController by lazy { findNavController() }
+    private val viewModel: ForgotPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +38,7 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listen()
+        observe()
     }
 
     override fun onDestroyView() {
@@ -36,7 +48,36 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun listen(){
         binding.btnResetPassword.setOnClickListener {
-            navController.popBackStack()
+            val email = binding.etEmail.text.toString()
+            if(email.isNotBlank())
+                if (email.isValidEmail())
+                    viewModel.sendPasswordResetLink(email)
+                else
+                    viewModel.setForgotPasswordResponseError(getString(R.string.not_valid_email))
+            else
+                viewModel.setForgotPasswordResponseError(getString(R.string.empty_email_field))
+        }
+    }
+
+    private fun observe(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.forgotPasswordResponse.collect{
+                    when(it){
+                        Resource.Empty -> {}
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        }
+                        Resource.Loading -> {
+                            // loading alert dialog
+                        }
+                        is Resource.Success -> {
+                            Toast.makeText(requireContext(), "Şifre sıfırlama maili başarılı bir şekilde gönderildi.", Toast.LENGTH_SHORT).show()
+                            navController.popBackStack()
+                        }
+                    }
+                }
+            }
         }
     }
 }

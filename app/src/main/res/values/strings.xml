@@ -2,6 +2,11 @@
     <string name="app_name">Yummy</string>
     <string name="hello_blank_fragment">Ben boşum</string>
 
+    <!-- Uyarı mesajları -->
+    <string name="empty_email_field">Lütfen bir email yazınız.</string>
+    <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
+    <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
+
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>
     <string name="search">Search</string>
@@ -24,5 +29,6 @@
     <!-- Forgot Password -->
     <string name="reset_password_message">Şifreni mi unuttun?</string>
     <string name="reset">Sıfırla</string>
+
 
 </resources>
