@@ -1,7 +1,7 @@
 package com.emircankirez.yummy.data.repository
 
 import android.content.Context
-import com.emircankirez.yummy.common.Constants
+import com.emircankirez.yummy.common.Constants.USERS
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.data.model.User
@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
 
     private val auth = Firebase.auth
-    private val userRef = Firebase.firestore.collection(Constants.USERS)
+    private val userRef = Firebase.firestore.collection(USERS)
     override suspend fun firebaseRegister(
         email: String,
         password: String
