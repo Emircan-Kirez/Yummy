@@ -4,7 +4,7 @@ import android.content.Context
 import com.emircankirez.yummy.common.Constants.USERS
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
-import com.emircankirez.yummy.data.model.User
+import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.AuthRepository
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth

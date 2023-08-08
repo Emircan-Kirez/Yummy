@@ -1,4 +1,4 @@
-package com.emircankirez.yummy.data.model
+package com.emircankirez.yummy.domain.model
 
 data class User(
     val uid: String,
