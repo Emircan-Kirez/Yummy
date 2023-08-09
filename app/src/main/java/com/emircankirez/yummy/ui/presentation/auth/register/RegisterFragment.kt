@@ -53,17 +53,7 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
             btnRegister.setOnClickListener {
-                val email = etEmail.text.toString()
-                val password = etPassword.text.toString()
-
-                if(email.isNotBlank() && password.isNotBlank()){
-                    if(email.isValidEmail())
-                        viewModel.register(email, password)
-                    else
-                        viewModel.setRegisterResponseError(getString(R.string.not_valid_email))
-                }else{
-                    viewModel.setRegisterResponseError(getString(R.string.empty_email_or_password_field))
-                }
+               viewModel.register(requireContext(), etEmail.text.toString(), etPassword.text.toString())
             }
         }
     }
@@ -85,6 +75,7 @@ class RegisterFragment : Fragment() {
                         }
                         Resource.Empty -> {}
                     }
+                    viewModel.resetRegisterResponse()
                 }
             }
         }

@@ -48,14 +48,7 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun listen(){
         binding.btnResetPassword.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            if(email.isNotBlank())
-                if (email.isValidEmail())
-                    viewModel.sendPasswordResetLink(email)
-                else
-                    viewModel.setForgotPasswordResponseError(getString(R.string.not_valid_email))
-            else
-                viewModel.setForgotPasswordResponseError(getString(R.string.empty_email_field))
+            viewModel.sendPasswordResetLink(requireContext(), binding.etEmail.text.toString())
         }
     }
 
@@ -76,6 +69,7 @@ class ForgotPasswordFragment : Fragment() {
                             navController.popBackStack()
                         }
                     }
+                    viewModel.resetForgotPasswordResponse()
                 }
             }
         }

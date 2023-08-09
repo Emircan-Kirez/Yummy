@@ -55,17 +55,9 @@ class LoginFragment : Fragment() {
             navController.navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-
-            if(email.isNotBlank() && password.isNotBlank()){
-                if(email.isValidEmail())
-                    viewModel.login(email, password)
-                else
-                    viewModel.setLoginResponseError(getString(R.string.not_valid_email))
-            }else{
-                viewModel.setLoginResponseError(getString(R.string.empty_email_or_password_field))
+        binding.apply {
+            btnLogin.setOnClickListener {
+                viewModel.login(requireContext(), etEmail.text.toString(), etPassword.text.toString())
             }
         }
     }
@@ -86,6 +78,7 @@ class LoginFragment : Fragment() {
                         }
                         Resource.Empty -> {}
                     }
+                    viewModel.resetLoginResponse()
                 }
             }
         }
