@@ -35,7 +35,7 @@ class SplashFragment : Fragment() {
                 navController.navigate(R.id.action_splashFragment_to_homeFragment)
             else
                 navController.navigate(R.id.action_splashFragment_to_loginFragment)
-        }, 2000)
+        }, 1000)
     }
 
     override fun onDestroyView() {
