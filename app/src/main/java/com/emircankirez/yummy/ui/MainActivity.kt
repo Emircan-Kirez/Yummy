@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.extensions.hide
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             bottomNavigationView.setupWithNavController(navController)
+            // aynı item'a tıklayınca sayfa yenilenmesin
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                if(item.itemId != bottomNavigationView.selectedItemId){
+                    NavigationUI.onNavDestinationSelected(item, navController)
+                }
+                true
+            }
         }
     }
 
