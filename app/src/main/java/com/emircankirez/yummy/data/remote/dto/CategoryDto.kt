@@ -11,6 +11,7 @@ data class CategoryDto(
 
 fun CategoryDto.toCategory() : Category {
     return Category(
+        id = idCategory,
         name = strCategory,
         photoUrl = strCategoryThumb
     )
