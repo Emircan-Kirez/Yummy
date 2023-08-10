@@ -65,6 +65,13 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.0")
     implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
+
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 }
 
 kapt {
