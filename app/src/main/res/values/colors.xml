@@ -3,10 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#1564BF</color>
+    <color name="accent">#F52C56</color>
     <color name="white_smoke">#F5F5F5</color>
 
     <!-- Bottom Navigation View -->
-    <color name="bottom_nav_bg_color">@color/primaryColor</color>
-    <color name="bottom_nav_item_color">@color/white</color>
+    <color name="bottom_nav_bg_color">@color/white</color>
+    <color name="bottom_nav_item_color">@color/accent</color>
+
+    <!-- Text -->
+    <color name="header">@color/primaryColor</color>
 
 </resources>

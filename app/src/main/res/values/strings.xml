@@ -30,5 +30,7 @@
     <string name="reset_password_message">Şifreni mi unuttun?</string>
     <string name="reset">Sıfırla</string>
 
-
+    <!-- Home Fragment -->
+    <string name="how_about_this_recipe">Bu tarife ne dersin?</string>
+    <string name="categories">Kategoriler</string>
 </resources>

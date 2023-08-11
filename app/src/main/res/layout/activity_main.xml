@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bottom_nav_bg_color"
+        android:elevation="@dimen/dp_16"
         android:theme="@style/CustomBottomNavigationView"
         app:itemIconSize="@dimen/bottom_nav_icon_size"
         app:itemIconTint="@color/bottom_nav_item_color"

@@ -8,6 +8,7 @@
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
 
     <!-- sp -->
     <dimen name="sp_32">32sp</dimen>
@@ -25,5 +26,14 @@
 
     <!-- Bottom Navigation View -->
     <dimen name="bottom_nav_icon_size">@dimen/dp_28</dimen>
+
+    <!-- Home Fragment -->
+    <dimen name="random_meal_card_view_height">150dp</dimen>
+
+    <!-- RecyclerView Category Item Sizes -->
+    <dimen name="category_card_view_height">130dp</dimen>
+
+    <!-- RecyclerView Category Meal Item Sizes -->
+    <dimen name="category_meal_card_view_height">200dp</dimen>
 
 </resources>
