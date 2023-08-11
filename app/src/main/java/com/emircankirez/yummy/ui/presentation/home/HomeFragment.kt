@@ -46,13 +46,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listen()
         observe()
         initCategoryRecyclerView()
-
-        binding.cvRandomMeal.setOnClickListener {
-            if(randomMeal != null)
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(randomMeal!!.id))
-        }
     }
 
     private fun initCategoryRecyclerView(){
@@ -61,6 +57,13 @@ class HomeFragment : Fragment() {
         }
         binding.rvCategory.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvCategory.adapter = adapter
+    }
+
+    private fun listen(){
+        binding.cvRandomMeal.setOnClickListener {
+            if(randomMeal != null)
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(randomMeal!!.id))
+        }
     }
 
     private fun observe(){

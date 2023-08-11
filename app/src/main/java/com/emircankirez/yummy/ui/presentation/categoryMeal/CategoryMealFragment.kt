@@ -50,18 +50,8 @@ class CategoryMealFragment : Fragment() {
         binding.tvCategoryName.text = categoryName
         viewModel.getCategoryMeals(categoryName)
         initCategoryMealAdapter()
+        listen()
         observe()
-
-        binding.svMeal.setOnQueryTextListener(object : OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel.searchQuery.value = newText.orEmpty()
-                    return true
-                }
-            })
     }
 
     private fun initCategoryMealAdapter(){
@@ -70,6 +60,19 @@ class CategoryMealFragment : Fragment() {
         }
         binding.rvMeal.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMeal.adapter = adapter
+    }
+
+    private fun listen(){
+        binding.svMeal.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchQuery.value = newText.orEmpty()
+                return true
+            }
+        })
     }
 
     private fun observe(){
