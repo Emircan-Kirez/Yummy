@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.presentation.categoryMeal.CategoryMealFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_guideline_0.95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.95"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_guideline_0.05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <TextView
+        android:id="@+id/tv_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:gravity="center"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/header"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Category Name" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sv_meal"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@drawable/search_view_bg"
+        app:closeIcon="@drawable/ic_close"
+        app:commitIcon="@drawable/ic_logout"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="@id/v_guideline_0.95"
+        app:layout_constraintStart_toStartOf="@id/v_guideline_0.05"
+        app:layout_constraintTop_toBottomOf="@id/tv_category_name"
+        app:queryBackground="@android:color/transparent"
+        app:searchIcon="@drawable/ic_search"
+        app:submitBackground="@color/accent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_meal"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@id/sv_meal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/v_guideline_0.05"
+        app:layout_constraintEnd_toEndOf="@id/v_guideline_0.95"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
