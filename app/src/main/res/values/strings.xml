@@ -33,4 +33,9 @@
     <!-- Home Fragment -->
     <string name="how_about_this_recipe">Bu tarife ne dersin?</string>
     <string name="categories">Kategoriler</string>
+
+    <!-- Meal Detail Fragment -->
+    <string name="instruction">Yapılışı</string>
+    <string name="categoryName">\t%1$s</string>
+    <string name="areaName">\t%1$s</string>
 </resources>

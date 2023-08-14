@@ -14,7 +14,7 @@ interface RecipeApi {
     suspend fun getMealsByCategoryName(@Query("c") categoryName: String) : CategoryMealListDto
 
     @GET("lookup.php")
-    suspend fun getMealById(@Query("i") recipeId: Int) : MealListDto
+    suspend fun getMealById(@Query("i") recipeId: String) : MealListDto
 
     @GET("search.php")
     suspend fun getMealsByName(@Query("s") recipeName: String) : MealListDto

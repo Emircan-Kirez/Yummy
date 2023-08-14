@@ -45,4 +45,14 @@ class RecipeRepositoryImpl @Inject constructor(
             emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
         }
     }
+
+    override suspend fun getMealById(mealId: String): Flow<Resource<List<Meal>>> = flow {
+        emit(Resource.Loading)
+        try {
+            val meal = recipeApi.getMealById(mealId).toMealList()
+            emit(Resource.Success(meal))
+        }catch (e: Exception){
+            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+        }
+    }
 }
