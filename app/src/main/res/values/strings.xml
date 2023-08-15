@@ -8,10 +8,10 @@
     <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
 
     <!-- Bottom Navigation View -->
-    <string name="home">Home</string>
-    <string name="search">Search</string>
-    <string name="user_recipe">User Recipe</string>
-    <string name="favorite">Favorite</string>
+    <string name="home">Ana Sayfa</string>
+    <string name="search">Ara</string>
+    <string name="user_recipe">Kullanıcı Tarifleri</string>
+    <string name="favorite">Favori Tarifler</string>
 
     <!-- Login Fragment -->
     <string name="welcome">Hoş Geldin</string>

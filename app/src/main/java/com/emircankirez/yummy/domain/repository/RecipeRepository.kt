@@ -16,4 +16,6 @@ interface RecipeRepository {
     suspend fun getCategoryMeals(categoryName: String) : Flow<Resource<List<CategoryMeal>>>
 
     suspend fun getMealById(mealId: String) : Flow<Resource<List<Meal>>>
+
+    suspend fun getMealsByName(mealName: String) : Flow<Resource<List<CategoryMeal>>>
 }

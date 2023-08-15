@@ -1,5 +1,6 @@
 package com.emircankirez.yummy.data.remote.dto
 
+import com.emircankirez.yummy.domain.model.CategoryMeal
 import com.emircankirez.yummy.domain.model.Meal
 
 data class MealDto(
@@ -67,5 +68,13 @@ fun MealDto.toMeal() : Meal {
         name = strMeal,
         photoUrl = strMealThumb,
         youtubeUrl = strYoutube
+    )
+}
+
+fun MealDto.toCategoryMeal() : CategoryMeal {
+    return CategoryMeal(
+        id = idMeal,
+        name= strMeal,
+        photoUrl = strMealThumb
     )
 }
