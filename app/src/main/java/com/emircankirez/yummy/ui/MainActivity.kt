@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    hideStatusBar()
+                    showStatusBar()
                     bottomNavigationView.hide()
                 }
             }
