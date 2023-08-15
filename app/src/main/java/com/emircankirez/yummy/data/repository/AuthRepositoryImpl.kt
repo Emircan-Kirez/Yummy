@@ -34,6 +34,7 @@ class AuthRepositoryImpl @Inject constructor(
             val user = User(uid, email)
             userRef.document(uid).set(user).await()
 
+            MyPreferences.getInstance(context).isLogin = true
             MyPreferences.getInstance(context).userUid = uid
 
             emit(Resource.Success(result))

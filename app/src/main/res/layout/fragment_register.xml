@@ -78,6 +78,7 @@
         app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
         app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
         app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
         app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
