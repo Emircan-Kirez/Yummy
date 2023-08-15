@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.emircankirez.yummy.databinding.ItemCategoryMealBinding
 import com.emircankirez.yummy.domain.model.CategoryMeal
 
-class CategoryMealAdapter(
+class MealAdapter(
     private val onClick: (mealId: String) -> Unit
-) : RecyclerView.Adapter<CategoryMealAdapter.MealHolder>() {
+) : RecyclerView.Adapter<MealAdapter.MealHolder>() {
 
     private val diffUtil = object : DiffUtil.ItemCallback<CategoryMeal>() {
         override fun areItemsTheSame(oldItem: CategoryMeal, newItem: CategoryMeal): Boolean {

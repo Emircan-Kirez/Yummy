@@ -14,7 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.emircankirez.yummy.adapter.CategoryMealAdapter
+import com.emircankirez.yummy.adapter.MealAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentCategoryMealBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +25,7 @@ class CategoryMealFragment : Fragment() {
     private var _binding: FragmentCategoryMealBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CategoryMealViewModel by viewModels()
-    private lateinit var adapter: CategoryMealAdapter
+    private lateinit var adapter: MealAdapter
     private val navController: NavController by lazy { findNavController() }
 
     override fun onCreateView(
@@ -49,13 +49,13 @@ class CategoryMealFragment : Fragment() {
 
         binding.tvCategoryName.text = categoryName
         viewModel.getCategoryMeals(categoryName)
-        initCategoryMealAdapter()
+        initMealRecyclerView()
         listen()
         observe()
     }
 
-    private fun initCategoryMealAdapter(){
-        adapter = CategoryMealAdapter{ mealId ->
+    private fun initMealRecyclerView(){
+        adapter = MealAdapter{ mealId ->
             navController.navigate(CategoryMealFragmentDirections.actionCategoryMealFragmentToMealDetailFragment(mealId))
         }
         binding.rvMeal.layoutManager = GridLayoutManager(requireContext(), 2)
