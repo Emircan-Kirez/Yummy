@@ -1,41 +1,42 @@
 <resources>
     <string name="app_name">Yummy</string>
-    <string name="hello_blank_fragment">Ben boşum</string>
+    <string name="hello_blank_fragment">I\'m free</string>
 
     <!-- Uyarı mesajları -->
-    <string name="empty_email_field">Lütfen bir email yazınız.</string>
-    <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
-    <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
+    <string name="empty_email_field">Please enter an email.</string>
+    <string name="not_valid_email">Please enter a valid email.</string>
+    <string name="empty_email_or_password_field">Please fill email and password field.</string>
+    <string name="unknown_error">Unknown Error</string>
 
     <!-- Bottom Navigation View -->
-    <string name="home">Ana Sayfa</string>
-    <string name="search">Ara</string>
-    <string name="user_recipe">Kullanıcı Tarifleri</string>
-    <string name="favorite">Favori Tarifler</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="user_recipe">User Recipe</string>
+    <string name="favorite">Favorite Recipe</string>
 
     <!-- Login Fragment -->
-    <string name="welcome">Hoş Geldin</string>
-    <string name="login">Giriş yap</string>
-    <string name="dont_you_have_account"><font color="#A7B0C0">Hesabın yok mu?</font> <font color="#1564BF"><b>Kayıt ol</b></font></string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Login</string>
+    <string name="dont_you_have_account"><font color="#A7B0C0">Don\'t you have an account?</font> <font color="#1564BF"><b>Register</b></font></string>
     <string name="email">Email</string>
-    <string name="password">Şifre</string>
-    <string name="forgot_password">Şifreni mi unuttun?</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
 
     <!-- Register Fragment -->
-    <string name="create_account">Hesap Oluştur</string>
-    <string name="register">Kayıt Ol</string>
-    <string name="have_already_account">Hesabım var</string>
+    <string name="create_account">Create Account</string>
+    <string name="register">Register</string>
+    <string name="have_already_account">I\'ve already an account</string>
 
     <!-- Forgot Password -->
-    <string name="reset_password_message">Şifreni mi unuttun?</string>
-    <string name="reset">Sıfırla</string>
+    <string name="reset_password_message">Reset Password</string>
+    <string name="reset">Reset</string>
 
     <!-- Home Fragment -->
-    <string name="how_about_this_recipe">Bu tarife ne dersin?</string>
-    <string name="categories">Kategoriler</string>
+    <string name="how_about_this_recipe">How about this recipe?</string>
+    <string name="categories">Categories</string>
 
     <!-- Meal Detail Fragment -->
-    <string name="instruction">Yapılışı</string>
+    <string name="instruction">Instructions</string>
     <string name="categoryName">\t%1$s</string>
     <string name="areaName">\t%1$s</string>
 </resources>

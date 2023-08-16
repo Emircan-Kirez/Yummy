@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Yummy</string>
+    <string name="hello_blank_fragment">Ben boşum</string>
+
+    <!-- Uyarı mesajları -->
+    <string name="empty_email_field">Lütfen bir email yazınız.</string>
+    <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
+    <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
+    <string name="unknown_error">Bilinmeyen Hata</string>
+
+    <!-- Bottom Navigation View -->
+    <string name="home">Ana Sayfa</string>
+    <string name="search">Ara</string>
+    <string name="user_recipe">Kullanıcı Tarifleri</string>
+    <string name="favorite">Favori Tarifler</string>
+
+    <!-- Login Fragment -->
+    <string name="welcome">Hoş Geldin</string>
+    <string name="login">Giriş yap</string>
+    <string name="dont_you_have_account"><font color="#A7B0C0">Hesabın yok mu?</font> <font color="#1564BF"><b>Kayıt ol</b></font></string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="forgot_password">Şifreni mi unuttun?</string>
+
+    <!-- Register Fragment -->
+    <string name="create_account">Hesap Oluştur</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="have_already_account">Hesabım var</string>
+
+    <!-- Forgot Password -->
+    <string name="reset_password_message">Şifreni mi unuttun?</string>
+    <string name="reset">Sıfırla</string>
+
+    <!-- Home Fragment -->
+    <string name="how_about_this_recipe">Bu tarife ne dersin?</string>
+    <string name="categories">Kategoriler</string>
+
+    <!-- Meal Detail Fragment -->
+    <string name="instruction">Yapılışı</string>
+    <string name="categoryName">\t%1$s</string>
+    <string name="areaName">\t%1$s</string>
+</resources>
