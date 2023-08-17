@@ -87,13 +87,7 @@ class SearchFragment : Fragment() {
                         }
                         is Resource.Success -> {
                             val data = it.data
-                            if(data.isNotEmpty())
-                                adapter.listDiffer.submitList(data)
-                            else{
-                                adapter.listDiffer.submitList(listOf<CategoryMeal>())
-                                Toast.makeText(requireContext(), "Herhangi bir yemek bulunamadı :/", Toast.LENGTH_SHORT).show()
-                            }
-
+                            adapter.listDiffer.submitList(data)
                         }
                     }
                 }
