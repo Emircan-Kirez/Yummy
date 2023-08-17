@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.emircankirez.yummy.adapter.MealAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentSearchBinding
-import com.emircankirez.yummy.domain.model.CategoryMeal
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
