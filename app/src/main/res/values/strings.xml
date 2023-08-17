@@ -7,6 +7,7 @@
     <string name="not_valid_email">Please enter a valid email.</string>
     <string name="empty_email_or_password_field">Please fill email and password field.</string>
     <string name="unknown_error">Unknown Error</string>
+    <string name="not_found_user_uid">User UID not found</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>
@@ -39,4 +40,8 @@
     <string name="instruction">Instructions</string>
     <string name="categoryName">\t%1$s</string>
     <string name="areaName">\t%1$s</string>
+
+    <!-- Favorite Fragment -->
+    <string name="log_out">Log out</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

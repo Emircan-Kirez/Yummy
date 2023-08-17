@@ -7,6 +7,7 @@
     <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
     <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
     <string name="unknown_error">Bilinmeyen Hata</string>
+    <string name="not_found_user_uid">User UID not found</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Ana Sayfa</string>
@@ -39,4 +40,8 @@
     <string name="instruction">Yapılışı</string>
     <string name="categoryName">\t%1$s</string>
     <string name="areaName">\t%1$s</string>
+
+    <!-- Favorite Fragment -->
+    <string name="log_out">Çıkış Yap</string>
+    <string name="edit_profile">Profili Düzenle</string>
 </resources>
