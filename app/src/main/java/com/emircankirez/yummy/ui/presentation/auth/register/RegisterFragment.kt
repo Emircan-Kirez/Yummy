@@ -1,5 +1,6 @@
 package com.emircankirez.yummy.ui.presentation.auth.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
-import com.emircankirez.yummy.common.extensions.isValidEmail
 import com.emircankirez.yummy.databinding.FragmentRegisterBinding
+import com.emircankirez.yummy.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -70,8 +70,10 @@ class RegisterFragment : Fragment() {
                             // loading alert dialog
                         }
                         is Resource.Success -> {
-                            Toast.makeText(requireContext(), "Kayıt başarılı bir şekilde oluşturuldu.", Toast.LENGTH_SHORT).show()
-                            navController.navigate(R.id.action_registerFragment_to_homeFragment)
+                            //Toast.makeText(requireContext(), "Kayıt başarılı bir şekilde oluşturuldu.", Toast.LENGTH_SHORT).show()
+                            val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
+                            startActivity(intentToMainActivity)
+                            requireActivity().finish()
                         }
                         Resource.Empty -> {}
                     }

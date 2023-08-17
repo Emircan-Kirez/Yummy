@@ -1,5 +1,6 @@
 package com.emircankirez.yummy.ui.presentation.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
-import com.emircankirez.yummy.common.extensions.isValidEmail
 import com.emircankirez.yummy.databinding.FragmentLoginBinding
+import com.emircankirez.yummy.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,11 +49,11 @@ class LoginFragment : Fragment() {
 
     private fun listen(){
         binding.tvForgotPassword.setOnClickListener {
-            navController.navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+            navController.navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
         }
 
         binding.tvDontYouHaveAccount.setOnClickListener {
-            navController.navigate(R.id.action_loginFragment_to_registerFragment)
+            navController.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
 
         binding.apply {
@@ -74,7 +75,9 @@ class LoginFragment : Fragment() {
                             // loading alert dialog
                         }
                         is Resource.Success -> {
-                            navController.navigate(R.id.action_loginFragment_to_homeFragment)
+                            val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
+                            startActivity(intentToMainActivity)
+                            requireActivity().finish()
                         }
                         Resource.Empty -> {}
                     }

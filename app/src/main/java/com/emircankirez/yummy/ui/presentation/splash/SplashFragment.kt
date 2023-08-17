@@ -1,5 +1,6 @@
 package com.emircankirez.yummy.ui.presentation.splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.R
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.databinding.FragmentSplashBinding
+import com.emircankirez.yummy.ui.MainActivity
 
 
 class SplashFragment : Fragment() {
@@ -30,11 +32,13 @@ class SplashFragment : Fragment() {
         val navController = findNavController()
 
         Handler().postDelayed({
-            // eğer kullanıcı kayıt olmuşsa home ekranına yoksa login ekranına
-            if(MyPreferences.getInstance(requireContext()).isLogin)
-                navController.navigate(R.id.action_splashFragment_to_homeFragment)
-            else
+            if(MyPreferences.getInstance(requireContext()).isLogin){
+                val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intentToMainActivity)
+                requireActivity().finish()
+            } else{
                 navController.navigate(R.id.action_splashFragment_to_loginFragment)
+            }
         }, 1000)
     }
 
