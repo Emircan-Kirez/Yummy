@@ -53,7 +53,7 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
             btnRegister.setOnClickListener {
-               viewModel.register(requireContext(), etEmail.text.toString(), etPassword.text.toString())
+               viewModel.register(etEmail.text.toString(), etPassword.text.toString())
             }
         }
     }
@@ -70,7 +70,6 @@ class RegisterFragment : Fragment() {
                             // loading alert dialog
                         }
                         is Resource.Success -> {
-                            //Toast.makeText(requireContext(), "Kayıt başarılı bir şekilde oluşturuldu.", Toast.LENGTH_SHORT).show()
                             val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
                             startActivity(intentToMainActivity)
                             requireActivity().finish()

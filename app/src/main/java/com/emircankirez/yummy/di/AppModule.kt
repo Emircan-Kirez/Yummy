@@ -1,11 +1,14 @@
 package com.emircankirez.yummy.di
 
+import android.content.Context
 import com.emircankirez.yummy.common.Constants.BASE_URL
+import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.data.remote.RecipeApi
-import com.emircankirez.yummy.domain.repository.RecipeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,5 +31,17 @@ object AppModule {
     @Singleton
     fun provideApi(retrofit: Retrofit) : RecipeApi {
         return retrofit.create(RecipeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMyPreferences(@ApplicationContext context: Context, resourceProvider: ResourceProvider) : MyPreferences {
+        return MyPreferences(context, resourceProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun provideResourceProvider(@ApplicationContext context: Context) : ResourceProvider {
+        return ResourceProvider(context)
     }
 }

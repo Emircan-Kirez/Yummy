@@ -1,9 +1,10 @@
 package com.emircankirez.yummy.data.repository
 
-import android.content.Context
+import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Constants.USERS
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.AuthRepository
 import com.google.firebase.auth.AuthResult
@@ -17,7 +18,8 @@ import javax.inject.Inject
 import kotlin.Exception
 
 class AuthRepositoryImpl @Inject constructor(
-    private val context: Context
+    private val resourceProvider: ResourceProvider,
+    private val myPreferences: MyPreferences
 ) : AuthRepository {
 
     private val auth = Firebase.auth
@@ -34,12 +36,12 @@ class AuthRepositoryImpl @Inject constructor(
             val user = User(uid, email)
             userRef.document(uid).set(user).await()
 
-            MyPreferences.getInstance(context).isLogin = true
-            MyPreferences.getInstance(context).userUid = uid
+            myPreferences.isLogin = true
+            myPreferences.userUid = uid
 
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
     override suspend fun firebaseLogin(
@@ -50,12 +52,12 @@ class AuthRepositoryImpl @Inject constructor(
         try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
 
-            MyPreferences.getInstance(context).isLogin = true
-            MyPreferences.getInstance(context).userUid = result.user?.uid!!
+            myPreferences.isLogin = true
+            myPreferences.userUid = result.user?.uid!!
 
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 
@@ -65,7 +67,7 @@ class AuthRepositoryImpl @Inject constructor(
             val result = auth.sendPasswordResetEmail(email).await()
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 }

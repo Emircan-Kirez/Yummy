@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentLoginBinding
 import com.emircankirez.yummy.ui.MainActivity
@@ -58,7 +57,7 @@ class LoginFragment : Fragment() {
 
         binding.apply {
             btnLogin.setOnClickListener {
-                viewModel.login(requireContext(), etEmail.text.toString(), etPassword.text.toString())
+                viewModel.login(etEmail.text.toString(), etPassword.text.toString())
             }
         }
     }

@@ -2,20 +2,14 @@ package com.emircankirez.yummy.data.local.sharedPreferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.emircankirez.yummy.R
+import com.emircankirez.yummy.data.provider.ResourceProvider
+import javax.inject.Inject
 
-class MyPreferences private constructor(
-    context: Context
+class MyPreferences @Inject constructor(
+    context: Context,
+    private val resourceProvider: ResourceProvider
 ) {
-    companion object {
-        private var myPreferences: MyPreferences? = null
-
-        fun getInstance(context: Context) : MyPreferences {
-            if(myPreferences == null)
-                myPreferences = MyPreferences(context)
-            return myPreferences!!
-        }
-    }
-
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         MyPreferencesConfig.SHARED_PREFERENCES_NAME,
         Context.MODE_PRIVATE
@@ -28,6 +22,6 @@ class MyPreferences private constructor(
         set(value) = editor.putBoolean(MyPreferencesConfig.IS_LOGIN, value).apply()
 
     var userUid: String?
-        get() = sharedPreferences.getString(MyPreferencesConfig.USER_UID, "Uid not found")
+        get() = sharedPreferences.getString(MyPreferencesConfig.USER_UID, resourceProvider.getString(R.string.not_found_user_uid))
         set(value) = editor.putString(MyPreferencesConfig.USER_UID, value).apply()
 }

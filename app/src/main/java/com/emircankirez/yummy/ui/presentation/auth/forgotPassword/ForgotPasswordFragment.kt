@@ -12,9 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
-import com.emircankirez.yummy.common.extensions.isValidEmail
 import com.emircankirez.yummy.databinding.FragmentForgotPasswordBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -48,7 +46,7 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun listen(){
         binding.btnResetPassword.setOnClickListener {
-            viewModel.sendPasswordResetLink(requireContext(), binding.etEmail.text.toString())
+            viewModel.sendPasswordResetLink(binding.etEmail.text.toString())
         }
     }
 
