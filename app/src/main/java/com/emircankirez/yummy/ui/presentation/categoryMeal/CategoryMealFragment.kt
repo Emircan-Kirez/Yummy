@@ -89,9 +89,6 @@ class CategoryMealFragment : Fragment() {
                         }
                         is Resource.Success -> {
                             adapter.listDiffer.submitList(it.data)
-                            if (it.data.isEmpty()){
-                                Toast.makeText(requireContext(), "Herhangi bir yemek bulunamadı.", Toast.LENGTH_SHORT).show()
-                            }
                         }
                     }
                 }

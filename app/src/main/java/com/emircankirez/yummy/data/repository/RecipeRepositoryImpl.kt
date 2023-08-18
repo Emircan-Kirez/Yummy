@@ -1,6 +1,8 @@
 package com.emircankirez.yummy.data.repository
 
+import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.data.remote.RecipeApi
 import com.emircankirez.yummy.data.remote.dto.toCategoryList
 import com.emircankirez.yummy.data.remote.dto.toCategoryMealList
@@ -14,7 +16,8 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
-    private val recipeApi : RecipeApi
+    private val recipeApi : RecipeApi,
+    private val resourceProvider: ResourceProvider
 ) : RecipeRepository {
     override suspend fun getCategories(): Flow<Resource<List<Category>>> = flow {
         emit(Resource.Loading)
@@ -22,7 +25,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val categories = recipeApi.getCategories().toCategoryList()
             emit(Resource.Success(categories))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 
@@ -32,7 +35,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val randomMeal = recipeApi.getRandomMeal().toMealList()
             emit(Resource.Success(randomMeal))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 
@@ -42,7 +45,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val categoryMealList = recipeApi.getMealsByCategoryName(categoryName).toCategoryMealList()
             emit(Resource.Success(categoryMealList))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 
@@ -52,7 +55,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val meal = recipeApi.getMealById(mealId).toMealList()
             emit(Resource.Success(meal))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 
@@ -62,7 +65,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val mealList = recipeApi.getMealsByName(mealName).toCategoryMealList()
             emit(Resource.Success(mealList))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: "Bilinmeyen Hata"))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
         }
     }
 }

@@ -12,10 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentForgotPasswordBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ForgotPasswordFragment : Fragment() {
@@ -23,6 +26,9 @@ class ForgotPasswordFragment : Fragment() {
     private val binding get() = _binding!!
     private val navController: NavController by lazy { findNavController() }
     private val viewModel: ForgotPasswordViewModel by viewModels()
+
+    @Inject
+    lateinit var resourceProvider: ResourceProvider
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +69,7 @@ class ForgotPasswordFragment : Fragment() {
                             // loading alert dialog
                         }
                         is Resource.Success -> {
-                            Toast.makeText(requireContext(), "Şifre sıfırlama maili başarılı bir şekilde gönderildi.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), resourceProvider.getString(R.string.send_password_reset_email_successfully), Toast.LENGTH_SHORT).show()
                             navController.popBackStack()
                         }
                     }

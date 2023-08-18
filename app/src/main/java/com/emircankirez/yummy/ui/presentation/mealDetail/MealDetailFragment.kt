@@ -3,7 +3,6 @@ package com.emircankirez.yummy.ui.presentation.mealDetail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +32,7 @@ class MealDetailFragment : Fragment() {
     private val viewModel: MealDetailViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
     private lateinit var meal: Meal
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -77,7 +77,7 @@ class MealDetailFragment : Fragment() {
                         Resource.Empty -> {}
                         is Resource.Error -> {
                             errorCase()
-                            Toast.makeText(requireContext(), "Yemek bilgileri alınamadı.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                             // error dialog ok tıklanınca geri gönder, cancelable false yap ki tıklamak zorunda olsun
                             navController.popBackStack()
                         }
@@ -87,7 +87,7 @@ class MealDetailFragment : Fragment() {
                         is Resource.Success -> {
                             meal = it.data[0]
                             delay(500) // animasyonu gösterebilmek için
-                            bind(meal)
+                            updateUI(meal)
                             successCase()
                         }
                     }
@@ -96,7 +96,7 @@ class MealDetailFragment : Fragment() {
         }
     }
 
-    private fun bind(meal: Meal){
+    private fun updateUI(meal: Meal){
         binding.apply {
             Glide.with(binding.root).load(meal.photoUrl).into(ivMealPhoto)
             tvMealName.text = meal.name
