@@ -91,6 +91,48 @@
             android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
+        app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
+        app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
+        app:layout_constraintTop_toBottomOf="@+id/til_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_surname"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        app:boxCornerRadiusTopEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomEnd="@dimen/cornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/cornerRadius"
+        app:layout_constraintEnd_toStartOf="@+id/v_guideline_0.9"
+        app:layout_constraintStart_toStartOf="@+id/v_guideline_0.1"
+        app:layout_constraintTop_toBottomOf="@+id/til_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_surname"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/surname" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
         android:layout_width="@dimen/dp_0"
@@ -104,14 +146,14 @@
         app:layout_constraintEnd_toStartOf="@id/v_guideline_0.9"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/v_guideline_0.1"
-        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+        app:layout_constraintTop_toBottomOf="@+id/h_guideline_0.7" />
 
     <TextView
         android:id="@+id/tv_have_already_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_32"
-        android:textSize="@dimen/dp_16"
+        android:textSize="@dimen/sp_16"
         android:text="@string/have_already_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

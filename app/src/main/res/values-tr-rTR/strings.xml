@@ -6,6 +6,7 @@
     <string name="empty_email_field">Lütfen bir email yazınız.</string>
     <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
     <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
+    <string name="fill_every_field">Lütfen boş yer bırakmayınız.</string>
     <string name="unknown_error">Bilinmeyen Hata</string>
     <string name="not_found_user_uid">User UID bulunamadı.</string>
 
@@ -26,6 +27,8 @@
     <!-- Register Fragment -->
     <string name="create_account">Hesap Oluştur</string>
     <string name="register">Kayıt Ol</string>
+    <string name="name">İsim</string>
+    <string name="surname">Soyisim</string>
     <string name="have_already_account">Hesabım var</string>
 
     <!-- Forgot Password -->

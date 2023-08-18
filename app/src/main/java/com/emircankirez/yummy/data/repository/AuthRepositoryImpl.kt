@@ -26,14 +26,16 @@ class AuthRepositoryImpl @Inject constructor(
     private val userRef = Firebase.firestore.collection(USERS)
     override suspend fun firebaseRegister(
         email: String,
-        password: String
+        password: String,
+        name: String,
+        surname: String
     ): Flow<Resource<AuthResult>> = flow {
         emit(Resource.Loading)
         try {
             val result = auth.createUserWithEmailAndPassword(email, password).await()
 
             val uid = result.user?.uid!!
-            val user = User(uid, email)
+            val user = User(uid, email, name, surname)
             userRef.document(uid).set(user).await()
 
             myPreferences.isLogin = true

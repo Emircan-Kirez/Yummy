@@ -53,7 +53,12 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
             btnRegister.setOnClickListener {
-               viewModel.register(etEmail.text.toString(), etPassword.text.toString())
+               viewModel.register(
+                   etEmail.text.toString(),
+                   etPassword.text.toString(),
+                   etName.text.toString(),
+                   etSurname.text.toString()
+               )
             }
         }
     }

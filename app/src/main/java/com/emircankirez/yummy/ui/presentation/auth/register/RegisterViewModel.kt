@@ -23,10 +23,10 @@ class RegisterViewModel @Inject constructor(
     private var _registerResponse = MutableStateFlow<Resource<AuthResult>>(Resource.Empty)
     val registerResponse : StateFlow<Resource<AuthResult>> = _registerResponse
 
-    fun register(email: String, password: String) = viewModelScope.launch {
-        if(email.isNotBlank() && password.isNotBlank()){
+    fun register(email: String, password: String, name: String, surname: String) = viewModelScope.launch {
+        if(email.isNotBlank() && password.isNotBlank() && name.isNotBlank() && surname.isNotBlank()){
             if(email.isValidEmail()){
-                authRepository.firebaseRegister(email, password).collect{ result ->
+                authRepository.firebaseRegister(email, password, name, surname).collect{ result ->
                     when(result){
                         is Resource.Error -> {
                             _registerResponse.value = Resource.Error(result.message)
@@ -44,7 +44,7 @@ class RegisterViewModel @Inject constructor(
                 _registerResponse.value = Resource.Error(resourceProvider.getString(R.string.not_valid_email))
             }
         }else{
-            _registerResponse.value = Resource.Error(resourceProvider.getString(R.string.empty_email_or_password_field))
+            _registerResponse.value = Resource.Error(resourceProvider.getString(R.string.fill_every_field))
         }
     }
 

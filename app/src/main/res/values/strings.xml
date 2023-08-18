@@ -6,6 +6,7 @@
     <string name="empty_email_field">Please enter an email.</string>
     <string name="not_valid_email">Please enter a valid email.</string>
     <string name="empty_email_or_password_field">Please fill email and password field.</string>
+    <string name="fill_every_field">Please fill every field.</string>
     <string name="unknown_error">Unknown Error</string>
     <string name="not_found_user_uid">User UID not found</string>
 
@@ -26,6 +27,8 @@
     <!-- Register Fragment -->
     <string name="create_account">Create Account</string>
     <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
     <string name="have_already_account">I\'ve already an account</string>
 
     <!-- Forgot Password -->
@@ -46,5 +49,5 @@
     <string name="log_out">Log out</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="profile_name">%1$s %2$s</string>
-    <string name="not_logged_in">Giriş yapılmamış.</string>
+    <string name="not_logged_in">Not logged in.</string>
 </resources>

@@ -10,6 +10,8 @@
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
 
     <!-- sp -->
     <dimen name="sp_32">32sp</dimen>
@@ -36,5 +38,9 @@
 
     <!-- RecyclerView Category Meal Item Sizes -->
     <dimen name="category_meal_card_view_height">200dp</dimen>
+
+    <!-- Favorite Fragment -->
+    <dimen name="profile_photo_width">100dp</dimen>
+    <dimen name="profile_photo_radius">50dp</dimen>
 
 </resources>
