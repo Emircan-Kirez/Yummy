@@ -1,12 +1,16 @@
 package com.emircankirez.yummy.ui.presentation.splash
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.databinding.FragmentSplashBinding
@@ -42,14 +46,27 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
 
-        Handler().postDelayed({
-            if(myPreferences.isLogin){
-                val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intentToMainActivity)
-                requireActivity().finish()
-            } else{
-                navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
-            }
-        }, 1000)
+        if (isNetworkAvailable()){
+            Handler().postDelayed({
+                if(myPreferences.isLogin){
+                    val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intentToMainActivity)
+                    requireActivity().finish()
+                } else{
+                    navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
+                }
+            }, 1000)
+        }else{
+            // show error dialog
+        }
+    }
+
+    private fun isNetworkAvailable() : Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
+
+        return networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
     }
 }
