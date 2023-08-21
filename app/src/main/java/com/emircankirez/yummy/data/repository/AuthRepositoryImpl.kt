@@ -43,7 +43,7 @@ class AuthRepositoryImpl @Inject constructor(
 
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_firebase_register)))
         }
     }
     override suspend fun firebaseLogin(
@@ -59,7 +59,7 @@ class AuthRepositoryImpl @Inject constructor(
 
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_firebase_login)))
         }
     }
 
@@ -69,7 +69,7 @@ class AuthRepositoryImpl @Inject constructor(
             val result = auth.sendPasswordResetEmail(email).await()
             emit(Resource.Success(result))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_firebase_send_password_reset_email)))
         }
     }
 }

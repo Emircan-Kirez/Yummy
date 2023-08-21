@@ -2,13 +2,23 @@
     <string name="app_name">Yummy</string>
     <string name="hello_blank_fragment">Ben boşum</string>
 
-    <!-- Uyarı mesajları -->
+    <!-- Uyarı Mesajları -->
     <string name="empty_email_field">Lütfen bir email yazınız.</string>
     <string name="not_valid_email">Lütfen geçerli bir email giriniz.</string>
     <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
     <string name="fill_every_field">Lütfen boş yer bırakmayınız.</string>
-    <string name="unknown_error">Bilinmeyen Hata</string>
     <string name="not_found_user_uid">User UID bulunamadı.</string>
+
+    <!-- Hata Mesajları -->
+    <string name="unknown_error_for_firebase_register">Firebase Kayıt İşlemi İçin Bilinmeyen Hata</string>
+    <string name="unknown_error_for_firebase_login">Firebase Giriş İşlemi İçin Bilinmeyen Hata</string>
+    <string name="unknown_error_for_firebase_send_password_reset_email">Firebase Şifre Sıfırlama Maili Gönderme İşlemi İçin Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_user_information">Kullanıcı Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_categories">Kategori Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_random_meal">Rastgele Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_category_meals">Kategori Yemeklerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_meal_by_id">Id İle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_getting_meals_by_name">İsimle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Ana Sayfa</string>

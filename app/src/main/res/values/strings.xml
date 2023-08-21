@@ -2,13 +2,23 @@
     <string name="app_name">Yummy</string>
     <string name="hello_blank_fragment">I\'m free</string>
 
-    <!-- Uyarı mesajları -->
+    <!-- Warning Messages -->
     <string name="empty_email_field">Please enter an email.</string>
     <string name="not_valid_email">Please enter a valid email.</string>
     <string name="empty_email_or_password_field">Please fill email and password field.</string>
     <string name="fill_every_field">Please fill every field.</string>
-    <string name="unknown_error">Unknown Error</string>
     <string name="not_found_user_uid">User UID not found</string>
+
+    <!-- Error Messages -->
+    <string name="unknown_error_for_firebase_register">Unknown Error For Firebase Register</string>
+    <string name="unknown_error_for_firebase_login">Unknown Error For Firebase Login</string>
+    <string name="unknown_error_for_firebase_send_password_reset_email">Unknown Error For Firebase Send Password Reset Email</string>
+    <string name="unknown_error_for_getting_user_information">Unknown Error For Getting User Information</string>
+    <string name="unknown_error_for_getting_categories">Unknown Error For Getting Categories</string>
+    <string name="unknown_error_for_getting_random_meal">Unknown Error For Getting Random Meal</string>
+    <string name="unknown_error_for_getting_category_meals">Unknown Error For Getting Category Meals</string>
+    <string name="unknown_error_for_getting_meal_by_id">Unknown Error For Getting Meal By Id</string>
+    <string name="unknown_error_for_getting_meals_by_name">Unknown Error For Getting Meals By Name</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>

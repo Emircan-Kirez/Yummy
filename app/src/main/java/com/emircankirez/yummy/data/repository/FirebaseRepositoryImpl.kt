@@ -31,7 +31,7 @@ class FirebaseRepositoryImpl @Inject constructor(
             )
             emit(Resource.Success(user))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_user_information)))
         }
     }
 }

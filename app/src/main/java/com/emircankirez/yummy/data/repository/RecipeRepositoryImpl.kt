@@ -25,7 +25,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val categories = recipeApi.getCategories().toCategoryList()
             emit(Resource.Success(categories))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_categories)))
         }
     }
 
@@ -35,7 +35,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val randomMeal = recipeApi.getRandomMeal().toMealList()
             emit(Resource.Success(randomMeal))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_random_meal)))
         }
     }
 
@@ -45,7 +45,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val categoryMealList = recipeApi.getMealsByCategoryName(categoryName).toCategoryMealList()
             emit(Resource.Success(categoryMealList))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_category_meals)))
         }
     }
 
@@ -55,7 +55,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val meal = recipeApi.getMealById(mealId).toMealList()
             emit(Resource.Success(meal))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_meal_by_id)))
         }
     }
 
@@ -65,7 +65,7 @@ class RecipeRepositoryImpl @Inject constructor(
             val mealList = recipeApi.getMealsByName(mealName).toCategoryMealList()
             emit(Resource.Success(mealList))
         }catch (e: Exception){
-            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error)))
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_meals_by_name)))
         }
     }
 }
