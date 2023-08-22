@@ -13,4 +13,9 @@
     <!-- Text -->
     <color name="header">@color/primaryColor</color>
 
+    <!-- Custom Dialog -->
+    <color name="success_dialog_button_color">#32ba7c</color>
+    <color name="error_dialog_button_color">#EF3B54</color>
+    <color name="info_dialog_button_color">#2196f3</color>
+
 </resources>

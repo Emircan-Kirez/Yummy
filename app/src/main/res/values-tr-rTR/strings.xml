@@ -60,4 +60,8 @@
     <string name="edit_profile">Profili Düzenle</string>
     <string name="profile_name">%1$s %2$s</string>
     <string name="not_logged_in">Giriş yapılmamış.</string>
+
+    <!-- Custom Dialog -->
+    <string name="okay">Tamam</string>
+    <string name="loading">Yükleniyor…</string>
 </resources>

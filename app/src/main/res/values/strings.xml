@@ -60,4 +60,8 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="profile_name">%1$s %2$s</string>
     <string name="not_logged_in">Not logged in.</string>
+
+    <!-- Custom Dialog -->
+    <string name="okay">Okay</string>
+    <string name="loading">Loading…</string>
 </resources>
