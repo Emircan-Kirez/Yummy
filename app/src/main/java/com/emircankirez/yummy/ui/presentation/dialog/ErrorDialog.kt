@@ -25,9 +25,8 @@ class ErrorDialog constructor(
         return dialog
     }
 
-    fun show(title: String, desc: String, onClicked: () -> Unit){
+    fun show(desc: String, onClicked: () -> Unit){
         binding.apply {
-            tvTitle.text = title
             tvDesc.text = desc
 
             btnDialogButton.setOnClickListener {
