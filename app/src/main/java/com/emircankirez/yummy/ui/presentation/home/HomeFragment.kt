@@ -28,7 +28,6 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: CategoryAdapter
     private val navController: NavController by lazy { findNavController() }
-    private var randomMeal: Meal? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,8 +60,9 @@ class HomeFragment : Fragment() {
 
     private fun listen(){
         binding.cvRandomMeal.setOnClickListener {
-            if(randomMeal != null)
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(randomMeal!!.id))
+            val randomMealResponse = viewModel.randomMealResponse.value
+            if(randomMealResponse is Resource.Success)
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(randomMealResponse.data[0].id))
         }
     }
 
@@ -93,14 +93,12 @@ class HomeFragment : Fragment() {
                         Resource.Empty -> {}
                         is Resource.Error -> {
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                            randomMeal = null
                         }
                         Resource.Loading -> {
                             // loading alert dialog
                         }
                         is Resource.Success -> {
-                            randomMeal = it.data[0]
-                            Glide.with(binding.root).load(randomMeal!!.photoUrl).into(binding.ivRandomMealPhoto)
+                            Glide.with(binding.root).load(it.data[0].photoUrl).into(binding.ivRandomMealPhoto)
                         }
                     }
                 }
