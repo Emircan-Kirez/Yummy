@@ -18,8 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
     private val firebaseRepository: FirebaseRepository,
-    private val myPreferences: MyPreferences,
-    private val resourceProvider: ResourceProvider
+    private val myPreferences: MyPreferences
 ): ViewModel() {
 
     private var _userResponse = MutableStateFlow<Resource<User>>(Resource.Empty)
@@ -30,21 +29,17 @@ class FavoriteViewModel @Inject constructor(
     }
 
     private fun getUserInformation() = viewModelScope.launch {
-        if(!myPreferences.isLogin){
-            _userResponse.value = Resource.Error(resourceProvider.getString(R.string.not_logged_in))
-        }else{
-            firebaseRepository.getUserInformation(myPreferences.userUid!!).collect{ result ->
-                when(result){
-                    Resource.Empty -> {}
-                    is Resource.Error -> {
-                        _userResponse.value = Resource.Error(result.message)
-                    }
-                    Resource.Loading -> {
-                        _userResponse.value = Resource.Loading
-                    }
-                    is Resource.Success -> {
-                        _userResponse.value = Resource.Success(result.data)
-                    }
+        firebaseRepository.getUserInformation(myPreferences.userUid!!).collect{ result ->
+            when(result){
+                Resource.Empty -> {}
+                is Resource.Error -> {
+                    _userResponse.value = Resource.Error(result.message)
+                }
+                Resource.Loading -> {
+                    _userResponse.value = Resource.Loading
+                }
+                is Resource.Success -> {
+                    _userResponse.value = Resource.Success(result.data)
                 }
             }
         }
