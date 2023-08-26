@@ -21,7 +21,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.emircankirez.yummy.ui.presentation.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_userEditFragment"
+            app:destination="@id/userEditFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.emircankirez.yummy.ui.presentation.search.SearchFragment"
@@ -56,5 +60,19 @@
         <argument
             android:name="mealId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/userEditFragment"
+        android:name="com.emircankirez.yummy.ui.presentation.userEdit.UserEditFragment"
+        android:label="fragment_user_edit"
+        tools:layout="@layout/fragment_user_edit" >
+        <argument
+            android:name="user"
+            app:argType="com.emircankirez.yummy.domain.model.User" />
+        <action
+            android:id="@+id/action_userEditFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@id/favoriteFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

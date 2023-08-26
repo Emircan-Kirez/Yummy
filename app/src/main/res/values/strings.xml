@@ -8,6 +8,8 @@
     <string name="empty_email_or_password_field">Please fill email and password field.</string>
     <string name="fill_every_field">Please fill every field.</string>
     <string name="not_found_user_uid">User UID not found</string>
+    <string name="empyt_name_or_surname_field">Please fill name and surname field.</string>
+    <string name="permission_denied">Permission denied.</string>
 
     <!-- Error Messages -->
     <string name="unknown_error_for_firebase_register">Unknown Error For Firebase Register</string>
@@ -19,6 +21,10 @@
     <string name="unknown_error_for_getting_category_meals">Unknown Error For Getting Category Meals</string>
     <string name="unknown_error_for_getting_meal_by_id">Unknown Error For Getting Meal By Id</string>
     <string name="unknown_error_for_getting_meals_by_name">Unknown Error For Getting Meals By Name</string>
+    <string name="unknown_error_for_saving_user_information">Unknown Error For Saving User Information</string>
+
+    <!-- Information Messages -->
+    <string name="profile_information_updated_successfully">Profile information has been successfully updated.</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>
@@ -63,4 +69,7 @@
     <!-- Custom Dialog -->
     <string name="okay">Okay</string>
     <string name="loading">Loading…</string>
+
+    <!-- User Edit Fragment -->
+    <string name="profile_edit">Profile Edit</string>
 </resources>

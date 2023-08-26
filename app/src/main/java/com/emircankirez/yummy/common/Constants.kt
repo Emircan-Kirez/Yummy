@@ -6,6 +6,10 @@ object Constants {
 
     const val DEFAULT_PROFILE_PHOTO_URL = "https://firebasestorage.googleapis.com/v0/b/yummy-af1af.appspot.com/o/app_logo.png?alt=media&token=88b83ae6-4af4-48aa-a2b2-abaf36528f0a"
 
+    const val MEAL_DATABASE_NAME = "meal_database_name"
+
     // collections
     const val USERS = "users"
+
+    const val PROFILE_PHOTOS = "profile_photos"
 }

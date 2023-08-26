@@ -53,4 +53,7 @@
     <dimen name="dialog_button_size">@dimen/sp_16</dimen>
     <dimen name="dialog_desc_size">@dimen/sp_16</dimen>
 
+    <!-- User Edit Fragment -->
+    <dimen name="user_edit_profile_photo_width">150dp</dimen>
+    <dimen name="user_edit_profile_photo_radius">75dp</dimen>
 </resources>

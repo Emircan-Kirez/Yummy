@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
@@ -106,7 +107,11 @@ class FavoriteFragment : Fragment() {
                 true
             }
             R.id.btn_edit_profile -> {
-                // editing fragment
+                val userResponse = viewModel.userResponse.value
+                if(userResponse is Resource.Success){
+                    val user = userResponse.data
+                    findNavController().navigate(FavoriteFragmentDirections.actionFavoriteFragmentToUserEditFragment(user))
+                }
                 true
             }
             else -> {

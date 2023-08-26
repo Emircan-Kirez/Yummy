@@ -8,6 +8,8 @@
     <string name="empty_email_or_password_field">Lütfen email ve şifre kısımlarını doldurunuz.</string>
     <string name="fill_every_field">Lütfen boş yer bırakmayınız.</string>
     <string name="not_found_user_uid">User UID bulunamadı.</string>
+    <string name="empyt_name_or_surname_field">Lütfen isim ve soyisim kısımlarını doldurunuz.</string>
+    <string name="permission_denied">İzin verilmedi.</string>
 
     <!-- Hata Mesajları -->
     <string name="unknown_error_for_firebase_register">Firebase Kayıt İşlemi İçin Bilinmeyen Hata</string>
@@ -19,6 +21,11 @@
     <string name="unknown_error_for_getting_category_meals">Kategori Yemeklerini Alırken Oluşan Bilinmeyen Hata</string>
     <string name="unknown_error_for_getting_meal_by_id">Id İle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
     <string name="unknown_error_for_getting_meals_by_name">İsimle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_saving_user_information">Kullanıcı Bilgilerini Kaydederken Oluşan Bilinmeyen Hata</string>
+
+    <!-- Information Messages -->
+    <string name="profile_information_updated_successfully">Profil bilgileri başarılı bir şekilde güncellendi.</string>
+
 
     <!-- Bottom Navigation View -->
     <string name="home">Ana Sayfa</string>
@@ -63,4 +70,7 @@
     <!-- Custom Dialog -->
     <string name="okay">Tamam</string>
     <string name="loading">Yükleniyor…</string>
+
+    <!-- User Edit Fragment -->
+    <string name="profile_edit">Profil Düzenleme</string>
 </resources>

@@ -15,4 +15,6 @@
     <style name="CustomTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/cool_font</item>
     </style>
+
+    <style name="CustomFabStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
 </resources>
