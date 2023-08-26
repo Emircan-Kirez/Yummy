@@ -17,4 +17,11 @@
     </style>
 
     <style name="CustomFabStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/cornerRadius</item>
+    </style>
 </resources>

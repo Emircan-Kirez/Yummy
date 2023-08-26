@@ -1,11 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Yummy" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">?android:colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:colorPrimary">@color/primaryColor</item>
+        <item name="android:textViewStyle">@style/CustomTextViewStyle</item>
+
     </style>
 
     <style name="Theme.Yummy" parent="Base.Theme.Yummy" />
 
     <style name="CustomBottomNavigationView" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="CustomTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/cool_font</item>
+    </style>
+
+    <style name="CustomFabStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/cornerRadius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/cornerRadius</item>
+    </style>
 </resources>
