@@ -65,41 +65,48 @@ class MealDetailViewModel @Inject constructor(
         }
     }
 
-    fun favoriteOnClicked() = viewModelScope.launch {
+    fun favoriteOnClicked() {
         val resource = _mealResponse.value
-        if(resource is Resource.Success){
+        if (resource is Resource.Success) {
             val meal = resource.data[0]
-            if(_isFavorite.value){ // delete
-                firebaseRepository.removeFavorite(meal.id).collect{ result ->
-                    when(result){
-                        Resource.Empty -> {}
-                        is Resource.Error -> {
-                            _removeResponse.value = Resource.Error(result.message)
-                        }
-                        Resource.Loading -> {
-                            _removeResponse.value = Resource.Loading
-                        }
-                        is Resource.Success -> {
-                            _isFavorite.value = false
-                            _removeResponse.value = Resource.Success(Unit)
-                        }
-                    }
+            if (_isFavorite.value)
+                removeFavoriteMeal(meal)
+            else
+                addFavoriteMeal(meal)
+        }
+    }
+
+    private fun removeFavoriteMeal(meal: Meal) = viewModelScope.launch {
+        firebaseRepository.removeFavorite(meal.id).collect{ result ->
+            when(result){
+                Resource.Empty -> {}
+                is Resource.Error -> {
+                    _removeResponse.value = Resource.Error(result.message)
                 }
-            }else{ // add
-                firebaseRepository.addFavorite(meal).collect{ result ->
-                    when(result){
-                        Resource.Empty -> {}
-                        is Resource.Error -> {
-                            _addResponse.value = Resource.Error(result.message)
-                        }
-                        Resource.Loading -> {
-                            _addResponse.value = Resource.Loading
-                        }
-                        is Resource.Success -> {
-                            _isFavorite.value = true
-                            _addResponse.value = Resource.Success(Unit)
-                        }
-                    }
+                Resource.Loading -> {
+                    _removeResponse.value = Resource.Loading
+                }
+                is Resource.Success -> {
+                    _isFavorite.value = false
+                    _removeResponse.value = Resource.Success(Unit)
+                }
+            }
+         }
+    }
+
+    private fun addFavoriteMeal(meal: Meal) = viewModelScope.launch {
+        firebaseRepository.addFavorite(meal).collect{ result ->
+            when(result){
+                Resource.Empty -> {}
+                is Resource.Error -> {
+                    _addResponse.value = Resource.Error(result.message)
+                }
+                Resource.Loading -> {
+                    _addResponse.value = Resource.Loading
+                }
+                is Resource.Success -> {
+                    _isFavorite.value = true
+                    _addResponse.value = Resource.Success(Unit)
                 }
             }
         }
