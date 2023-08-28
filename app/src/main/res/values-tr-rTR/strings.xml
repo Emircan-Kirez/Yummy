@@ -10,6 +10,7 @@
     <string name="not_found_user_uid">User UID bulunamadı.</string>
     <string name="empyt_name_or_surname_field">Lütfen isim ve soyisim kısımlarını doldurunuz.</string>
     <string name="permission_denied">İzin verilmedi.</string>
+    <string name="no_internet_connection">İnternet bağlantısı yok.</string>
 
     <!-- Hata Mesajları -->
     <string name="unknown_error_for_firebase_register">Firebase Kayıt İşlemi İçin Bilinmeyen Hata</string>
@@ -22,9 +23,18 @@
     <string name="unknown_error_for_getting_meal_by_id">Id İle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
     <string name="unknown_error_for_getting_meals_by_name">İsimle Yemek Bilgilerini Alırken Oluşan Bilinmeyen Hata</string>
     <string name="unknown_error_for_saving_user_information">Kullanıcı Bilgilerini Kaydederken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_is_favorite">Favori Olup Olmadığını Anlarken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_adding_favorite_meal">Favori Yemeği Eklerken Oluşan Bilinmeyen Hata</string>
+    <string name="unknown_error_for_removing_favorite_meal">Favori Yemeği Silerken Oluşan Bilinmeyen Hata</string>
+    <string name="couldnt_add_to_favorites">Yemek favorilere kaydedilemedi.</string>
+    <string name="couldnt_remove_from_favorites">Yemek favorilerden silinemedi.</string>
 
     <!-- Information Messages -->
     <string name="profile_information_updated_successfully">Profil bilgileri başarılı bir şekilde güncellendi.</string>
+
+    <!-- Success Messages -->
+    <string name="add_to_favorites_successfully">Yemek başarılı bir şekilde favorilere eklendi.</string>
+    <string name="remove_from_favorites_successfully">Yemek başarılı bir şekilde favorilerden silindi.</string>
 
 
     <!-- Bottom Navigation View -->

@@ -2,10 +2,14 @@ package com.emircankirez.yummy.data.repository
 
 import android.net.Uri
 import com.emircankirez.yummy.R
+import com.emircankirez.yummy.common.Constants.FAVORITES
+import com.emircankirez.yummy.common.Constants.FAVORITE_MEALS
 import com.emircankirez.yummy.common.Constants.PROFILE_PHOTOS
 import com.emircankirez.yummy.common.Constants.USERS
 import com.emircankirez.yummy.common.Resource
+import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.data.provider.ResourceProvider
+import com.emircankirez.yummy.domain.model.Meal
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.FirebaseRepository
 import com.google.firebase.firestore.ktx.firestore
@@ -17,10 +21,13 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val myPreferences: MyPreferences
 ) : FirebaseRepository {
 
     private val userRef = Firebase.firestore.collection(USERS)
+    private val favoriteMealsRef = Firebase.firestore.collection(FAVORITE_MEALS).document(myPreferences.userUid!!).collection(
+        FAVORITES)
     private val photoRef = Firebase.storage.reference.child(PROFILE_PHOTOS)
 
     override suspend fun getUserInformation(uid: String): Flow<Resource<User>> = flow {
@@ -72,6 +79,40 @@ class FirebaseRepositoryImpl @Inject constructor(
             }
         }catch (e: Exception){
             emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_saving_user_information)))
+        }
+    }
+
+    override suspend fun isFavorite(mealId: String): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
+        try{
+            val ds = favoriteMealsRef.document(mealId).get().await()
+            if (ds != null && ds.exists()){
+                emit(Resource.Success(true))
+            }else{
+                emit(Resource.Success(false))
+            }
+        }catch (e: Exception){
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_is_favorite)))
+        }
+    }
+
+    override suspend fun addFavorite(meal: Meal): Flow<Resource<Unit>> = flow {
+        emit(Resource.Loading)
+        try {
+            favoriteMealsRef.document(meal.id).set(meal).await()
+            emit(Resource.Success(Unit))
+        }catch (e: Exception){
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_adding_favorite_meal)))
+        }
+    }
+
+    override suspend fun removeFavorite(mealId: String): Flow<Resource<Unit>> = flow {
+        emit(Resource.Loading)
+        try {
+            favoriteMealsRef.document(mealId).delete().await()
+            emit(Resource.Success(Unit))
+        }catch (e: Exception){
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_removing_favorite_meal)))
         }
     }
 }

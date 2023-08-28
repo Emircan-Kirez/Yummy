@@ -58,33 +58,41 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    val daggerVersion = "2.47"
+    val firebaseBomVersion = "32.2.0"
+    val firebaseAuthVersion = "22.1.0"
+    val firebaseFirestoreVersion = "24.7.0"
+    val firebaseStorageVersion = "20.2.1"
+    val retrofitVersion = "2.9.0"
+    val glideVersion = "4.15.1"
+    val roomVersion = "2.5.2"
+    val lottieVersion = "3.4.0"
+
     // dagger-hilt
-    implementation("com.google.dagger:hilt-android:2.47")
-    kapt("com.google.dagger:hilt-android-compiler:2.47")
+    implementation("com.google.dagger:hilt-android:$daggerVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$daggerVersion")
 
     // firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation(platform("com.google.firebase:firebase-bom:$firebaseBomVersion"))
     implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.0")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
-    implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
+    implementation("com.google.firebase:firebase-auth-ktx:$firebaseAuthVersion")
+    implementation("com.google.firebase:firebase-firestore-ktx:$firebaseFirestoreVersion")
+    implementation("com.google.firebase:firebase-storage-ktx:$firebaseStorageVersion")
 
     // retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
     // glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     //room
-    implementation("androidx.room:room-runtime:2.5.2")
-    annotationProcessor("androidx.room:room-compiler:2.5.2")
-    kapt("androidx.room:room-compiler:2.5.2")
-    // coroutine for room
-    implementation("androidx.room:room-ktx:2.5.2")
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     // Lottie
-    implementation ("com.airbnb.android:lottie:3.4.0")
+    implementation ("com.airbnb.android:lottie:$lottieVersion")
 }
 
 kapt {

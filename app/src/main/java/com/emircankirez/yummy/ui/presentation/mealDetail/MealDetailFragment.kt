@@ -19,11 +19,16 @@ import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.common.extensions.hide
 import com.emircankirez.yummy.common.extensions.show
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentMealDetailBinding
 import com.emircankirez.yummy.domain.model.Meal
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MealDetailFragment : Fragment() {
@@ -32,6 +37,14 @@ class MealDetailFragment : Fragment() {
     private val viewModel: MealDetailViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
     private lateinit var meal: Meal
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
+    private var successDialog: SuccessDialog? = null
+
+    @Inject
+    lateinit var resourceProvider: ResourceProvider
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +58,9 @@ class MealDetailFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
+        successDialog = null
         _binding = null
     }
 
@@ -52,15 +68,14 @@ class MealDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mealId = MealDetailFragmentArgs.fromBundle(requireArguments()).mealId
 
-        viewModel.getMealById(mealId)
+        viewModel.isExists(mealId)
         listen()
         observe()
     }
 
     private fun listen(){
         binding.ibFavorite.setOnClickListener {
-            // buton doldur ya da outline
-            // firebase favorilerden sil ya da favorilere ekle
+            viewModel.favoriteOnClicked()
         }
 
         binding.ibYoutube.setOnClickListener {
@@ -72,14 +87,23 @@ class MealDetailFragment : Fragment() {
     private fun observe(){
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.isFavorite.collect{
+                    updateFavoriteButton(it)
+                }
+            }
+        }
+
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
                 viewModel.mealResponse.collect{
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
                             errorCase()
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                            // error dialog ok tıklanınca geri gönder, cancelable false yap ki tıklamak zorunda olsun
-                            navController.popBackStack()
+                            showErrorDialog(it.message){
+                                navController.popBackStack()
+                            }
                         }
                         Resource.Loading -> {
                             loadingCase()
@@ -94,6 +118,57 @@ class MealDetailFragment : Fragment() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.addResponse.collect{
+                    when(it){
+                        Resource.Empty -> {}
+                        is Resource.Error -> {
+                            hideLoadingDialog()
+                            showErrorDialog(resourceProvider.getString(R.string.couldnt_add_to_favorites))
+                        }
+                        Resource.Loading -> {
+                            showLoadingDialog()
+                        }
+                        is Resource.Success -> {
+                            hideLoadingDialog{
+                                showSuccessDialog(resourceProvider.getString(R.string.add_to_favorites_successfully))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.removeResponse.collect{
+                    when(it){
+                        Resource.Empty -> {}
+                        is Resource.Error -> {
+                            hideLoadingDialog()
+                            showErrorDialog(resourceProvider.getString(R.string.couldnt_remove_from_favorites))
+                        }
+                        Resource.Loading -> {
+                            showLoadingDialog()
+                        }
+                        is Resource.Success -> {
+                            hideLoadingDialog {
+                                showSuccessDialog(resourceProvider.getString(R.string.remove_from_favorites_successfully))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateFavoriteButton(isFavorite: Boolean) {
+        if (isFavorite)
+            binding.ibFavorite.setBackgroundResource(R.drawable.ic_favorite)
+        else
+            binding.ibFavorite.setBackgroundResource(R.drawable.ic_favorite_outline)
     }
 
     private fun updateUI(meal: Meal){
@@ -145,5 +220,32 @@ class MealDetailFragment : Fragment() {
             tvInstruction.show()
             tvInstructionDetail.show()
         }
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
+    }
+
+    private fun showSuccessDialog(desc: String, callBack: () -> Unit = {}){
+        if(successDialog == null)
+            successDialog = SuccessDialog(requireContext())
+
+        successDialog?.show(desc, callBack)
     }
 }

@@ -34,7 +34,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseRepository(resourceProvider: ResourceProvider) : FirebaseRepository {
-        return FirebaseRepositoryImpl(resourceProvider)
+    fun provideFirebaseRepository(resourceProvider: ResourceProvider, myPreferences: MyPreferences) : FirebaseRepository {
+        return FirebaseRepositoryImpl(resourceProvider, myPreferences)
     }
 }

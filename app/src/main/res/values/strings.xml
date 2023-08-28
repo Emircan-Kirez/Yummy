@@ -10,6 +10,7 @@
     <string name="not_found_user_uid">User UID not found</string>
     <string name="empyt_name_or_surname_field">Please fill name and surname field.</string>
     <string name="permission_denied">Permission denied.</string>
+    <string name="no_internet_connection">No internet connection</string>
 
     <!-- Error Messages -->
     <string name="unknown_error_for_firebase_register">Unknown Error For Firebase Register</string>
@@ -22,9 +23,18 @@
     <string name="unknown_error_for_getting_meal_by_id">Unknown Error For Getting Meal By Id</string>
     <string name="unknown_error_for_getting_meals_by_name">Unknown Error For Getting Meals By Name</string>
     <string name="unknown_error_for_saving_user_information">Unknown Error For Saving User Information</string>
+    <string name="unknown_error_for_is_favorite">Unknown Error For Is Favorite</string>
+    <string name="unknown_error_for_adding_favorite_meal">Unknown Error For Adding Favorite Meal</string>
+    <string name="unknown_error_for_removing_favorite_meal">Unknown Error For Removing Favorite Meal</string>
+    <string name="couldnt_add_to_favorites">Couldn\'t add to favorites</string>
+    <string name="couldnt_remove_from_favorites">Couldn\t remove from favorites</string>
 
     <!-- Information Messages -->
     <string name="profile_information_updated_successfully">Profile information has been successfully updated.</string>
+
+    <!-- Success Messages -->
+    <string name="add_to_favorites_successfully">The meal has been successfully add to favorites.</string>
+    <string name="remove_from_favorites_successfully">The meal has been successfully remove from favorites.</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>
