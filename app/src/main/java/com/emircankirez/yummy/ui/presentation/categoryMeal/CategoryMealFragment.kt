@@ -48,8 +48,8 @@ class CategoryMealFragment : Fragment() {
         val categoryName = CategoryMealFragmentArgs.fromBundle(requireArguments()).categoryName
 
         binding.tvCategoryName.text = categoryName
-        viewModel.getCategoryMeals(categoryName)
         initMealRecyclerView()
+        viewModel.getCategoryMeals(categoryName)
         listen()
         observe()
     }
