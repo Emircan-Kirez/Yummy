@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_favoriteFragment_to_userEditFragment"
             app:destination="@id/userEditFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

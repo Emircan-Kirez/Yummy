@@ -28,6 +28,7 @@
     <string name="unknown_error_for_removing_favorite_meal">Unknown Error For Removing Favorite Meal</string>
     <string name="couldnt_add_to_favorites">Couldn\'t add to favorites</string>
     <string name="couldnt_remove_from_favorites">Couldn\t remove from favorites</string>
+    <string name="unknown_error_for_getting_all_favorites">Unknown Error For Getting All Favorites</string>
 
     <!-- Information Messages -->
     <string name="profile_information_updated_successfully">Profile information has been successfully updated.</string>

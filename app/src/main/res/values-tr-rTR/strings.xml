@@ -28,6 +28,7 @@
     <string name="unknown_error_for_removing_favorite_meal">Favori Yemeği Silerken Oluşan Bilinmeyen Hata</string>
     <string name="couldnt_add_to_favorites">Yemek favorilere kaydedilemedi.</string>
     <string name="couldnt_remove_from_favorites">Yemek favorilerden silinemedi.</string>
+    <string name="unknown_error_for_getting_all_favorites">Bütün Favori Yemekleri Alırken Oluşan Bilinmeyen Hata</string>
 
     <!-- Information Messages -->
     <string name="profile_information_updated_successfully">Profil bilgileri başarılı bir şekilde güncellendi.</string>

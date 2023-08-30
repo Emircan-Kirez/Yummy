@@ -7,7 +7,7 @@ import com.emircankirez.yummy.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface FirebaseRepository {
-    suspend fun getUserInformation(uid: String) : Flow<Resource<User>>
+    suspend fun getUserInformation() : Flow<Resource<User>>
 
     suspend fun saveUserInformation(uri: Uri?, user: User) : Flow<Resource<Unit>>
 
@@ -16,4 +16,6 @@ interface FirebaseRepository {
     suspend fun addFavorite(meal: Meal) : Flow<Resource<Unit>>
 
     suspend fun removeFavorite(mealId: String) : Flow<Resource<Unit>>
+
+    suspend fun getAllFavorites() : Flow<Resource<List<Meal>>>
 }

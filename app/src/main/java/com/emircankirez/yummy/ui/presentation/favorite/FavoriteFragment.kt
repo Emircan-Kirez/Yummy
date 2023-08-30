@@ -16,8 +16,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.emircankirez.yummy.R
+import com.emircankirez.yummy.adapter.FavoriteAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.databinding.FragmentFavoriteBinding
@@ -34,6 +36,7 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FavoriteViewModel by viewModels()
+    private lateinit var adapter: FavoriteAdapter
 
     @Inject
     lateinit var myPreferences: MyPreferences
@@ -60,7 +63,16 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initFavoriteRecyclerView()
         observe()
+    }
+
+    private fun initFavoriteRecyclerView(){
+        adapter = FavoriteAdapter { mealId ->
+            findNavController().navigate(FavoriteFragmentDirections.actionFavoriteFragmentToMealDetailFragment(mealId))
+        }
+        binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvFavorite.adapter = adapter
     }
 
     private fun observe(){
@@ -77,6 +89,25 @@ class FavoriteFragment : Fragment() {
                         }
                         is Resource.Success -> {
                             updateUI(it.data)
+                        }
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.favoritesResponse.collect{
+                    when(it){
+                        Resource.Empty -> {}
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        }
+                        Resource.Loading -> {
+                            // loading alert dialog
+                        }
+                        is Resource.Success -> {
+                            adapter.listDiffer.submitList(it.data)
                         }
                     }
                 }

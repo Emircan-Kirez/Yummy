@@ -13,6 +13,7 @@ import com.emircankirez.yummy.domain.model.Meal
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.FirebaseRepository
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.flow.Flow
@@ -22,15 +23,18 @@ import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
     private val resourceProvider: ResourceProvider,
-    private val myPreferences: MyPreferences
+    myPreferences: MyPreferences
 ) : FirebaseRepository {
 
     private val userRef = Firebase.firestore.collection(USERS)
-    private val favoriteMealsRef = Firebase.firestore.collection(FAVORITE_MEALS).document(myPreferences.userUid!!).collection(
-        FAVORITES)
+    private val favoriteMealsRef = Firebase.firestore
+        .collection(FAVORITE_MEALS)
+        .document(myPreferences.userUid!!)
+        .collection(FAVORITES)
     private val photoRef = Firebase.storage.reference.child(PROFILE_PHOTOS)
+    private val uid = myPreferences.userUid!!
 
-    override suspend fun getUserInformation(uid: String): Flow<Resource<User>> = flow {
+    override suspend fun getUserInformation(): Flow<Resource<User>> = flow {
         emit(Resource.Loading)
         try{
             val doc = userRef.document(uid).get().await()
@@ -113,6 +117,21 @@ class FirebaseRepositoryImpl @Inject constructor(
             emit(Resource.Success(Unit))
         }catch (e: Exception){
             emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_removing_favorite_meal)))
+        }
+    }
+
+    override suspend fun getAllFavorites(): Flow<Resource<List<Meal>>> = flow {
+        emit(Resource.Loading)
+        try{
+            val querySnapshot = favoriteMealsRef.orderBy("name").get().await()
+            val mealList = ArrayList<Meal>()
+            for(snapshot in querySnapshot){
+                val meal = snapshot.toObject<Meal>()
+                mealList.add(meal)
+            }
+            emit(Resource.Success(mealList))
+        }catch (e: Exception){
+            emit(Resource.Error(e.localizedMessage ?: resourceProvider.getString(R.string.unknown_error_for_getting_all_favorites)))
         }
     }
 }

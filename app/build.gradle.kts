@@ -65,7 +65,6 @@ dependencies {
     val firebaseStorageVersion = "20.2.1"
     val retrofitVersion = "2.9.0"
     val glideVersion = "4.15.1"
-    val roomVersion = "2.5.2"
     val lottieVersion = "3.4.0"
 
     // dagger-hilt
@@ -85,11 +84,6 @@ dependencies {
 
     // glide
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-
-    //room
-    implementation ("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
 
     // Lottie
     implementation ("com.airbnb.android:lottie:$lottieVersion")

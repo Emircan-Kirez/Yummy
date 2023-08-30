@@ -8,4 +8,6 @@ data class Meal(
     val name: String,
     val photoUrl: String,
     val youtubeUrl: String
-)
+) {
+    constructor() : this("", "", "", "", "", "", "")
+}
