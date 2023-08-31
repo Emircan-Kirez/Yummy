@@ -11,6 +11,7 @@
     <string name="empyt_name_or_surname_field">Please fill name and surname field.</string>
     <string name="permission_denied">Permission denied.</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="undo">Undo</string>
 
     <!-- Error Messages -->
     <string name="unknown_error_for_firebase_register">Unknown Error For Firebase Register</string>
@@ -36,6 +37,7 @@
     <!-- Success Messages -->
     <string name="add_to_favorites_successfully">The meal has been successfully add to favorites.</string>
     <string name="remove_from_favorites_successfully">The meal has been successfully remove from favorites.</string>
+    <string name="favorite_meal_deleted">The favorite meal deleted</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">Home</string>

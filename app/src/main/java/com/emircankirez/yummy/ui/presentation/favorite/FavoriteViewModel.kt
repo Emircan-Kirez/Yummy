@@ -3,10 +3,7 @@ package com.emircankirez.yummy.ui.presentation.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
-import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
-import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.domain.model.Meal
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.FirebaseRepository
@@ -26,6 +23,9 @@ class FavoriteViewModel @Inject constructor(
 
     private var _favoritesResponse = MutableStateFlow<Resource<List<Meal>>>(Resource.Empty)
     val favoritesResponse : StateFlow<Resource<List<Meal>>> = _favoritesResponse
+
+    private var _deleteResponse = MutableStateFlow<Resource<Meal>>(Resource.Empty)
+    val deleteResponse : StateFlow<Resource<Meal>> = _deleteResponse
 
     init {
         getUserInformation()
@@ -63,6 +63,31 @@ class FavoriteViewModel @Inject constructor(
                     _favoritesResponse.value = Resource.Success(result.data)
                 }
             }
+        }
+    }
+
+    fun deleteFavorite(meal: Meal) = viewModelScope.launch {
+        firebaseRepository.removeFavorite(meal.id).collect{ result ->
+            when(result){
+                Resource.Empty -> {}
+                is Resource.Error -> {
+                    _deleteResponse.value = Resource.Error(result.message)
+                }
+                Resource.Loading -> {
+                    _deleteResponse.value = Resource.Loading
+                }
+                is Resource.Success -> {
+                    _deleteResponse.value = Resource.Success(meal)
+                    getAllFavorites()
+                }
+            }
+        }
+    }
+
+    fun addFavorite(meal: Meal) = viewModelScope.launch {
+        firebaseRepository.addFavorite(meal).collect{ result ->
+            if (result is Resource.Success)
+                getAllFavorites()
         }
     }
 }

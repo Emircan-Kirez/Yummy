@@ -16,15 +16,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.emircankirez.yummy.R
 import com.emircankirez.yummy.adapter.FavoriteAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentFavoriteBinding
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.ui.LoginActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +44,9 @@ class FavoriteFragment : Fragment() {
 
     @Inject
     lateinit var myPreferences: MyPreferences
+
+    @Inject
+    lateinit var resourceProvider: ResourceProvider
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +71,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initFavoriteRecyclerView()
+        addItemTouchHelper()
         observe()
     }
 
@@ -73,6 +81,26 @@ class FavoriteFragment : Fragment() {
         }
         binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvFavorite.adapter = adapter
+    }
+
+    private fun addItemTouchHelper(){
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder,
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deleteFavorite(adapter.listDiffer.currentList[viewHolder.adapterPosition])
+            }
+
+        }).attachToRecyclerView(binding.rvFavorite)
     }
 
     private fun observe(){
@@ -108,6 +136,32 @@ class FavoriteFragment : Fragment() {
                         }
                         is Resource.Success -> {
                             adapter.listDiffer.submitList(it.data)
+                        }
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.deleteResponse.collect{
+                    when(it){
+                        Resource.Empty -> {}
+                        is Resource.Error -> {
+                            // error message + geri ekle
+                        }
+                        Resource.Loading -> {
+                            // loading
+                        }
+                        is Resource.Success -> {
+                            val meal = it.data
+                            Snackbar.make(
+                                binding.root,
+                                resourceProvider.getString(R.string.favorite_meal_deleted),
+                                Snackbar.LENGTH_LONG
+                            ).setAction(resourceProvider.getString(R.string.undo)){
+                                viewModel.addFavorite(meal)
+                            }.show()
                         }
                     }
                 }

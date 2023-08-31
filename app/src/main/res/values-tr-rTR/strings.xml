@@ -11,6 +11,7 @@
     <string name="empyt_name_or_surname_field">Lütfen isim ve soyisim kısımlarını doldurunuz.</string>
     <string name="permission_denied">İzin verilmedi.</string>
     <string name="no_internet_connection">İnternet bağlantısı yok.</string>
+    <string name="undo">Geri Al</string>
 
     <!-- Hata Mesajları -->
     <string name="unknown_error_for_firebase_register">Firebase Kayıt İşlemi İçin Bilinmeyen Hata</string>
@@ -36,6 +37,7 @@
     <!-- Success Messages -->
     <string name="add_to_favorites_successfully">Yemek başarılı bir şekilde favorilere eklendi.</string>
     <string name="remove_from_favorites_successfully">Yemek başarılı bir şekilde favorilerden silindi.</string>
+    <string name="favorite_meal_deleted">Favori yemek silindi.</string>
 
 
     <!-- Bottom Navigation View -->
