@@ -149,7 +149,7 @@ class UserEditFragment : Fragment() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
                 if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_MEDIA_IMAGES)){
-                    Snackbar.make(requireView(), "Resim almak için izin lazım", Snackbar.LENGTH_INDEFINITE).setAction("İzin ver"){
+                    Snackbar.make(requireView(), resourceProvider.getString(R.string.need_permission_to_access_gallery), Snackbar.LENGTH_INDEFINITE).setAction(resourceProvider.getString(R.string.give_permission)){
                         permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
                     }.show()
                 }else{
@@ -163,7 +163,7 @@ class UserEditFragment : Fragment() {
             // under TIRAMISU version
             if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                 if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)){
-                    Snackbar.make(requireView(), "Resim almak için izin lazım", Snackbar.LENGTH_INDEFINITE).setAction("İzin ver"){
+                    Snackbar.make(requireView(), resourceProvider.getString(R.string.need_permission_to_access_gallery), Snackbar.LENGTH_INDEFINITE).setAction(resourceProvider.getString(R.string.give_permission)){
                         permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
                     }.show()
                 }else{
