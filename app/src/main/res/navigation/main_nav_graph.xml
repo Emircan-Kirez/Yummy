@@ -39,11 +39,6 @@
             app:destination="@id/mealDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userRecipeFragment"
-        android:name="com.emircankirez.yummy.ui.presentation.userRecipe.UserRecipeFragment"
-        android:label="fragment_user_recipe"
-        tools:layout="@layout/fragment_user_recipe" />
-    <fragment
         android:id="@+id/categoryMealFragment"
         android:name="com.emircankirez.yummy.ui.presentation.categoryMeal.CategoryMealFragment"
         android:label="fragment_category_meal"

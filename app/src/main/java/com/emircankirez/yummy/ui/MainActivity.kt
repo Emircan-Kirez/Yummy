@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.searchFragment -> {
                     bottomNavigationView.show()
                 }
-
+                /* temporarily removed
                 R.id.userRecipeFragment -> {
                     bottomNavigationView.show()
-                }
+                }*/
 
                 R.id.favoriteFragment -> {
                     bottomNavigationView.show()

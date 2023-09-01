@@ -10,11 +10,6 @@
         android:menuCategory="secondary"
         android:icon="@drawable/ic_search_selector" />
 
-    <item android:id="@+id/userRecipeFragment"
-        android:title="@string/user_recipe"
-        android:menuCategory="secondary"
-        android:icon="@drawable/ic_user_recipe_selector" />
-
     <item android:id="@+id/favoriteFragment"
         android:title="@string/favorite"
         android:menuCategory="secondary"
