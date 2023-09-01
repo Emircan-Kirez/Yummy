@@ -10,11 +10,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.emircankirez.yummy.R
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
+import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentSplashBinding
 import com.emircankirez.yummy.ui.MainActivity
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.InfoDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -26,6 +31,11 @@ class SplashFragment : Fragment() {
 
     @Inject
     lateinit var myPreferences: MyPreferences
+
+    private var errorDialog: ErrorDialog? = null
+
+    @Inject
+    lateinit var resourceProvider: ResourceProvider
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +49,7 @@ class SplashFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
         _binding = null
     }
 
@@ -57,7 +68,9 @@ class SplashFragment : Fragment() {
                 }
             }, 1000)
         }else{
-            // show error dialog
+            showErrorDialog(resourceProvider.getString(R.string.no_internet_connection)){
+                requireActivity().finish()
+            }
         }
     }
 
@@ -68,5 +81,12 @@ class SplashFragment : Fragment() {
         val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
 
         return networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
     }
 }

@@ -8,6 +8,7 @@ import com.emircankirez.yummy.domain.model.Meal
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -72,6 +73,7 @@ class FavoriteViewModel @Inject constructor(
                 Resource.Empty -> {}
                 is Resource.Error -> {
                     _deleteResponse.value = Resource.Error(result.message)
+                    getAllFavorites() // hata olursa da ekran güncel kalsın
                 }
                 Resource.Loading -> {
                     _deleteResponse.value = Resource.Loading

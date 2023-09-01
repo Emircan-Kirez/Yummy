@@ -28,10 +28,13 @@ import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentFavoriteBinding
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.ui.LoginActivity
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,6 +50,10 @@ class FavoriteFragment : Fragment() {
 
     @Inject
     lateinit var resourceProvider: ResourceProvider
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +71,8 @@ class FavoriteFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
         _binding = null
     }
 
@@ -72,6 +81,7 @@ class FavoriteFragment : Fragment() {
 
         initFavoriteRecyclerView()
         addItemTouchHelper()
+        showLoadingDialog()
         observe()
     }
 
@@ -110,11 +120,9 @@ class FavoriteFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            showErrorDialog(it.message)
                         }
-                        Resource.Loading -> {
-                            // loading alert dialog
-                        }
+                        Resource.Loading -> {}
                         is Resource.Success -> {
                             updateUI(it.data)
                         }
@@ -129,13 +137,14 @@ class FavoriteFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            hideLoadingDialog()
+                            showErrorDialog(it.message)
                         }
-                        Resource.Loading -> {
-                            // loading alert dialog
-                        }
+                        Resource.Loading -> {}
                         is Resource.Success -> {
-                            adapter.listDiffer.submitList(it.data)
+                            hideLoadingDialog {
+                                adapter.listDiffer.submitList(it.data)
+                            }
                         }
                     }
                 }
@@ -148,11 +157,9 @@ class FavoriteFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            // error message + geri ekle
+                            showErrorDialog(it.message)
                         }
-                        Resource.Loading -> {
-                            // loading
-                        }
+                        Resource.Loading -> {}
                         is Resource.Success -> {
                             val meal = it.data
                             Snackbar.make(
@@ -203,5 +210,25 @@ class FavoriteFragment : Fragment() {
                 super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
     }
 }

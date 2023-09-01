@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.emircankirez.yummy.adapter.MealAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentCategoryMealBinding
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,6 +30,10 @@ class CategoryMealFragment : Fragment() {
     private val viewModel: CategoryMealViewModel by viewModels()
     private lateinit var adapter: MealAdapter
     private val navController: NavController by lazy { findNavController() }
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +47,8 @@ class CategoryMealFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
         _binding = null
     }
 
@@ -82,17 +91,40 @@ class CategoryMealFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            hideLoadingDialog()
+                            showErrorDialog(it.message)
                         }
                         Resource.Loading -> {
-                            // loading alert dialog
+                            showLoadingDialog()
                         }
                         is Resource.Success -> {
-                            adapter.listDiffer.submitList(it.data)
+                            hideLoadingDialog{
+                                adapter.listDiffer.submitList(it.data)
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
     }
 }

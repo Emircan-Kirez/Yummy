@@ -18,6 +18,9 @@ import com.emircankirez.yummy.adapter.CategoryAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentHomeBinding
 import com.emircankirez.yummy.domain.model.Meal
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,6 +31,10 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: CategoryAdapter
     private val navController: NavController by lazy { findNavController() }
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +47,8 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
         _binding = null
     }
 
@@ -73,13 +82,16 @@ class HomeFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            hideLoadingDialog()
+                            showErrorDialog(it.message)
                         }
                         Resource.Loading -> {
-                            // loading alert dialog
+                            showLoadingDialog()
                         }
                         is Resource.Success -> {
-                            adapter.listDiffer.submitList(it.data)
+                            hideLoadingDialog {
+                                adapter.listDiffer.submitList(it.data)
+                            }
                         }
                     }
                 }
@@ -92,11 +104,9 @@ class HomeFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            showErrorDialog(it.message)
                         }
-                        Resource.Loading -> {
-                            // loading alert dialog
-                        }
+                        Resource.Loading -> {}
                         is Resource.Success -> {
                             Glide.with(binding.root).load(it.data[0].photoUrl).into(binding.ivRandomMealPhoto)
                         }
@@ -107,4 +117,23 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
+    }
 }

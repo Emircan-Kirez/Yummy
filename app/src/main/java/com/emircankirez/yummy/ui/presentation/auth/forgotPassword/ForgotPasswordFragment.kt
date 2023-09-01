@@ -16,6 +16,9 @@ import com.emircankirez.yummy.R
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentForgotPasswordBinding
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,6 +33,11 @@ class ForgotPasswordFragment : Fragment() {
     @Inject
     lateinit var resourceProvider: ResourceProvider
 
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
+    private var successDialog: SuccessDialog? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,15 +47,18 @@ class ForgotPasswordFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
+        successDialog = null
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listen()
         observe()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun listen(){
@@ -63,19 +74,49 @@ class ForgotPasswordFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            hideLoadingDialog()
+                            showErrorDialog(it.message)
                         }
                         Resource.Loading -> {
-                            // loading alert dialog
+                           showLoadingDialog()
                         }
                         is Resource.Success -> {
-                            Toast.makeText(requireContext(), resourceProvider.getString(R.string.send_password_reset_email_successfully), Toast.LENGTH_SHORT).show()
-                            navController.popBackStack()
+                            hideLoadingDialog()
+                            showSuccessDialog(resourceProvider.getString(R.string.send_password_reset_email_successfully)){
+                                navController.popBackStack()
+                            }
                         }
                     }
                     viewModel.resetForgotPasswordResponse()
                 }
             }
         }
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
+    }
+
+    private fun showSuccessDialog(desc: String, callBack: () -> Unit = {}){
+        if(successDialog == null)
+            successDialog = SuccessDialog(requireContext())
+
+        successDialog?.show(desc, callBack)
     }
 }

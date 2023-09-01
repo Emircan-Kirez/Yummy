@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.emircankirez.yummy.adapter.MealAdapter
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentSearchBinding
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,6 +30,9 @@ class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var adapter: MealAdapter
     private val navController: NavController by lazy { findNavController() }
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +46,7 @@ class SearchFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
         _binding = null
     }
 
@@ -79,11 +86,9 @@ class SearchFragment : Fragment() {
                     when(it){
                         Resource.Empty -> {}
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            showErrorDialog(it.message)
                         }
-                        Resource.Loading -> {
-                            // loading alert dialog
-                        }
+                        Resource.Loading -> {}
                         is Resource.Success -> {
                             val data = it.data
                             adapter.listDiffer.submitList(data)
@@ -94,4 +99,10 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
 }

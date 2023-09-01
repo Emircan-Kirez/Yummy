@@ -16,6 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.emircankirez.yummy.common.Resource
 import com.emircankirez.yummy.databinding.FragmentRegisterBinding
 import com.emircankirez.yummy.ui.MainActivity
+import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
+import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
+import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,6 +28,10 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private val navController: NavController by lazy { findNavController() }
     private val viewModel: RegisterViewModel by viewModels()
+
+    // dialogs
+    private var errorDialog: ErrorDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +50,8 @@ class RegisterFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        errorDialog = null
+        loadingDialog = null
         _binding = null
     }
 
@@ -69,12 +78,14 @@ class RegisterFragment : Fragment() {
                 viewModel.registerResponse.collect{
                     when(it){
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            hideLoadingDialog()
+                            showErrorDialog(it.message)
                         }
                         Resource.Loading -> {
-                            // loading alert dialog
+                            showLoadingDialog()
                         }
                         is Resource.Success -> {
+                            hideLoadingDialog()
                             val intentToMainActivity = Intent(requireContext(), MainActivity::class.java)
                             startActivity(intentToMainActivity)
                             requireActivity().finish()
@@ -85,5 +96,25 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showErrorDialog(desc: String, callBack: () -> Unit = {}){
+        if(errorDialog == null)
+            errorDialog = ErrorDialog(requireContext())
+
+        errorDialog?.show(desc, callBack)
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null)
+            loadingDialog = LoadingDialog(requireContext())
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog(callBack: () -> Unit = {}) {
+        if (loadingDialog != null) {
+            loadingDialog?.dismiss()
+        }
+        callBack.invoke()
     }
 }
