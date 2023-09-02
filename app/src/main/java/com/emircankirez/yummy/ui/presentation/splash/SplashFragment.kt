@@ -17,9 +17,6 @@ import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.databinding.FragmentSplashBinding
 import com.emircankirez.yummy.ui.MainActivity
 import com.emircankirez.yummy.ui.presentation.dialog.ErrorDialog
-import com.emircankirez.yummy.ui.presentation.dialog.InfoDialog
-import com.emircankirez.yummy.ui.presentation.dialog.LoadingDialog
-import com.emircankirez.yummy.ui.presentation.dialog.SuccessDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -20,7 +20,7 @@ class CategoryMealViewModel @Inject constructor(
     private val recipeRepository: RecipeRepository
 ): ViewModel() {
 
-    var searchQuery = MutableStateFlow<String>("")
+    var searchQuery = MutableStateFlow("")
     private var _originalCategoryMealResponse = MutableStateFlow<Resource<List<CategoryMeal>>>(Resource.Empty)
     private var _filteredCategoryMealResponse = MutableStateFlow<Resource<List<CategoryMeal>>>(Resource.Empty)
     val filteredCategoryMealResponse : StateFlow<Resource<List<CategoryMeal>>> = _filteredCategoryMealResponse

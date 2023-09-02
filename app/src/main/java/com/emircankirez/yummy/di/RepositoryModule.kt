@@ -1,6 +1,5 @@
 package com.emircankirez.yummy.di
 
-import android.app.Application
 import com.emircankirez.yummy.data.local.sharedPreferences.MyPreferences
 import com.emircankirez.yummy.data.provider.ResourceProvider
 import com.emircankirez.yummy.data.remote.RecipeApi

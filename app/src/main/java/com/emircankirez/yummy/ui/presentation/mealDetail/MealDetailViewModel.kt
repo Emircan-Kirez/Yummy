@@ -18,7 +18,7 @@ class MealDetailViewModel @Inject constructor(
     private val firebaseRepository: FirebaseRepository
 ): ViewModel() {
 
-    private var _isFavorite = MutableStateFlow<Boolean>(false)
+    private var _isFavorite = MutableStateFlow(false)
     val isFavorite : StateFlow<Boolean> = _isFavorite
 
     private var _mealResponse = MutableStateFlow<Resource<List<Meal>>>(Resource.Empty)

@@ -8,7 +8,6 @@ import com.emircankirez.yummy.domain.model.Meal
 import com.emircankirez.yummy.domain.model.User
 import com.emircankirez.yummy.domain.repository.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
